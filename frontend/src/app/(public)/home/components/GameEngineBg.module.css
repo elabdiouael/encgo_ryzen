@@ -1,0 +1,70 @@
+.gameViewport { position: fixed; inset: 0; z-index: 0; background: #010103; overflow: hidden; pointer-events: none; --cam-x: 0; --cam-y: 0; perspective: 1200px; }
+.cameraRig { width: 100%; height: 100%; transform-style: preserve-3d; transform: rotateX(calc(var(--cam-y) * -12deg)) rotateY(calc(var(--cam-x) * 15deg)); transition: transform 0.1s linear; }
+
+.scene { position: absolute; inset: 0; transform-style: preserve-3d; opacity: 0; visibility: hidden; transition: opacity 0.8s, visibility 0.8s; }
+.gameViewport[data-scene="default"] .sceneDefault, .gameViewport[data-scene="register"] .sceneRegister, .gameViewport[data-scene="archive"] .sceneArchive, .gameViewport[data-scene="about"] .sceneAbout, .gameViewport[data-scene="why"] .sceneWhy { opacity: 1; visibility: visible; z-index: 2; }
+
+/* 1. BROADCAST (Cyber Globe) */
+.earthGlobe { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin: -250px 0 0 -250px; transform-style: preserve-3d; animation: float3D 6s infinite alternate ease-in-out; }
+.globeGlow { position: absolute; inset: 0; background: radial-gradient(circle, rgba(0,210,255,0.15) 0%, transparent 60%); animation: pulseLight 4s infinite alternate; }
+.globeRingX, .globeRingY, .globeRingZ { position: absolute; inset: 50px; border: 2px dashed rgba(0, 210, 255, 0.4); border-radius: 50%; }
+.globeRingX { transform: rotateX(70deg); animation: spinZ 15s linear infinite; }
+.globeRingY { transform: rotateY(70deg); animation: spinX 20s linear infinite reverse; border-color: rgba(188, 19, 254, 0.4); }
+.globeRingZ { transform: rotateZ(70deg); animation: spinY 25s linear infinite; }
+.cyberFloor { position: absolute; bottom: -30%; left: -50%; width: 200%; height: 100%; background-image: linear-gradient(rgba(0,210,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,210,255,0.05) 1px, transparent 1px); background-size: 80px 80px; transform: rotateX(80deg) translateZ(-300px); animation: gridMove 8s linear infinite; }
+
+/* ========================================== */
+/* TUNNELS CONTAINER (Shared for Red & Amber) */
+/* ========================================== */
+.warpTunnel { position: absolute; top: 50%; left: 50%; width: 1px; height: 1px; transform-style: preserve-3d; }
+
+/* 🚨 2. REGISTER (THE EPIC RED TUNNEL) 🚨 */
+.warpRingRed { 
+  position: absolute; width: 600px; height: 600px; margin: -300px 0 0 -300px; 
+  border: 5px solid #ff0055; border-radius: 30px; 
+  box-shadow: 0 0 30px #ff0055; 
+  opacity: 0; animation: rushEpic 4s linear infinite; 
+}
+/* K-iy-jbedk l-9eddam (Forward) */
+@keyframes rushEpic { 
+  0% { transform: translateZ(-2000px) rotate(0deg); opacity: 0; } 
+  20% { opacity: 1; } 
+  80% { opacity: 1; } 
+  100% { transform: translateZ(800px) rotate(45deg); opacity: 0; } 
+}
+
+/* ⏳ 3. ARCHIVE (THE EPIC AMBER TIME TUNNEL) ⏳ */
+.warpRingAmber { 
+  position: absolute; width: 600px; height: 600px; margin: -300px 0 0 -300px; 
+  border: 6px dashed #ff6f00; border-radius: 10px; 
+  box-shadow: 0 0 30px #ff6f00, inset 0 0 20px rgba(255, 111, 0, 0.4); 
+  opacity: 0; animation: timeTravel 5s linear infinite; 
+}
+/* K-iy-jerrek l-Lor (Backward in Time) */
+@keyframes timeTravel { 
+  0% { transform: translateZ(800px) rotate(0deg); opacity: 0; } 
+  20% { opacity: 1; } 
+  80% { opacity: 1; } 
+  100% { transform: translateZ(-2000px) rotate(-60deg); opacity: 0; } 
+}
+.vaultCore { position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; background: radial-gradient(circle, rgba(255,111,0,0.1) 0%, transparent 70%); }
+
+
+/* 4. ABOUT (Neural Net) */
+.neuralNet { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(60deg) rotateZ(30deg); }
+.node { position: absolute; width: 250px; height: 250px; background: rgba(188,19,254,0.05); border: 2px solid rgba(188,19,254,0.8); backdrop-filter: blur(5px); animation: float3D 6s infinite alternate; border-radius: 30px; }
+.node1 { top: 20%; left: 30%; transform: translateZ(100px); } .node2 { top: 60%; left: 60%; transform: translateZ(400px); animation-delay: -2s; } .node3 { top: 10%; left: 70%; transform: translateZ(250px); animation-delay: -4s; }
+
+/* 🎯 5. WHY (THE EPIC GOLDEN ASTROLABE) 🎯 */
+.goldenAstrolabe { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin: -250px 0 0 -250px; transform-style: preserve-3d; animation: float3D 8s infinite alternate ease-in-out; }
+.goldGlow { position: absolute; inset: 0; background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 60%); animation: pulseLight 4s infinite alternate; }
+.astroRing { position: absolute; inset: 0; border: 12px solid transparent; border-radius: 50%; box-shadow: 0 0 15px #ffd700, inset 0 0 15px rgba(255,215,0,0.3); }
+
+/* Globals */
+@keyframes spinZ { 100% { transform: rotateX(70deg) rotateZ(360deg); } }
+@keyframes spinX { 100% { transform: rotateY(70deg) rotateX(360deg); } }
+@keyframes spinY { 100% { transform: rotateZ(70deg) rotateY(360deg); } }
+@keyframes float3D { 0% { transform: translateY(0) translateZ(0); } 100% { transform: translateY(-40px) translateZ(50px); } }
+@keyframes pulseLight { 100% { opacity: 0.6; transform: scale(1.1); } }
+@keyframes gridMove { 100% { background-position: 0 80px; } }
+.screenVignette { position: absolute; inset: 0; box-shadow: inset 0 0 350px rgba(0,0,0,0.98); z-index: 10; pointer-events: none; }

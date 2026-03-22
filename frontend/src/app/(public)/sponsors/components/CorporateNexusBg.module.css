@@ -1,0 +1,43 @@
+.nexusWrapper {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: #020205; overflow: hidden; z-index: 0;
+}
+
+.gridOverlay {
+  position: absolute; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(188, 19, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px; opacity: 0.7;
+  transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 80px; }
+}
+
+.glowingOrb1, .glowingOrb2 {
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.15;
+  animation: floatOrb 10s infinite alternate ease-in-out;
+}
+
+.glowingOrb1 {
+  top: 10%; left: -10%; width: 50vw; height: 50vw; background: #bc13fe;
+}
+.glowingOrb2 {
+  bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: #00d2ff;
+  animation-delay: -5s;
+}
+
+@keyframes floatOrb {
+  0% { transform: scale(0.8) translate(0, 0); }
+  100% { transform: scale(1.2) translate(50px, -50px); }
+}
+
+.connectingLines {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 2px, transparent 3px);
+  background-size: 100px 100px; opacity: 0.5;
+}
