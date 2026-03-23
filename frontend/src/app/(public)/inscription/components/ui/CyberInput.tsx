@@ -3,15 +3,17 @@
 import React, { InputHTMLAttributes, forwardRef } from 'react';
 import styles from './CyberInput.module.css';
 
+// 💥 THE FIX: Zidna rows?: number hna bach TypeScript y-t-calma
 interface CyberInputProps extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   label: string;
   icon?: React.ReactNode;
   error?: string;
   isTextarea?: boolean;
+  rows?: number; 
 }
 
 const CyberInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, CyberInputProps>(
-  ({ label, icon, error, isTextarea, className, ...props }, ref) => {
+  ({ label, icon, error, isTextarea, className, rows, ...props }, ref) => {
     return (
       <div className={`${styles.inputWrapper} ${error ? styles.hasError : ''} ${className || ''}`}>
         <div className={styles.inputContainer}>
@@ -22,6 +24,7 @@ const CyberInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, CyberInput
               ref={ref as any} 
               className={styles.cyberField} 
               placeholder=" " 
+              rows={rows || 4} /* 💥 THE FIX: N-passiw rows l-textarea (awla 4 par défaut) */
               {...(props as any)} 
             />
           ) : (
