@@ -1,8 +1,8 @@
 import { InscriptionRequest, InscriptionResponse, ContactMessage, SponsorshipRequest, DashboardStats, EquipeDto } from '../types';
 
-const API_BASE_URL = 'http://localhost:8080/api/v1';
+// 💥 THE HACKER UPLINK: K-y-9ra mn Vercel awla k-y-mchi nichan l-Hugging Face
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://elabdi48-ing-ryzen-encg-backend.hf.space/api/v1';
 
-// 🔥 Zdt lik had l-Interfaces hna bach n-garantiw TypeScript may-dirch sda3
 export interface ContactMessageDto {
   nom: string;
   email: string;
@@ -29,7 +29,6 @@ export const apiService = {
     });
 
     if (!response.ok) {
-      // 🔥 L-HACK HOWA HADA: N-9raw chno gal Spring Boot b-dabt
       const errorText = await response.text();
       console.error("🔥 REJET DU BACKEND :", errorText);
       throw new Error(errorText || "Erreur inconnue lors de l'inscription");
@@ -46,7 +45,6 @@ export const apiService = {
         body: JSON.stringify(data),
       });
       
-      // 🔥 L-RISK MANAGEMENT L-7A9I9I HNA: N-9raw l-erreur mn l-Backend
       if (!res.ok) {
         const errorText = await res.text(); 
         console.error("🔥 Spring Boot a rejeté la requête :", errorText);
