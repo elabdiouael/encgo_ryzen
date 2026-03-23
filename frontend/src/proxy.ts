@@ -1,8 +1,8 @@
-// 💥 FIX: L-Imports k-y-jiw mn 'next/server' f l-Middleware!
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+// 💥 THE FIX: Beddelna 'export function middleware' b 'export default function proxy'
+export default function proxy(request: NextRequest) {
   // K-n-choufou wach l-User bgha y-dkhel l-chi page f /admin
   if (request.nextUrl.pathname.startsWith('/admin')) {
     
@@ -23,7 +23,7 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-// K-n-goulou l-Middleware y-t-applika ghir 3la /admin/*
+// K-n-goulou l-Proxy y-t-applika ghir 3la /admin/*
 export const config = {
   matcher: '/admin/:path*',
 };
