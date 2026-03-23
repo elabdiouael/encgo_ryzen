@@ -13,7 +13,9 @@ export default function CustomCursor() {
   // N-khebiw l-position f Refs bach ma-n-re-renderiwch React
   const mouse = useRef({ x: 0, y: 0 });
   const outline = useRef({ x: 0, y: 0 });
-  const requestRef = useRef<number>();
+  
+  // 💥 THE FIX: Zidna (0) hna bach TypeScript strict mode y-sket
+  const requestRef = useRef<number>(0);
 
   const [isHovered, setIsHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
