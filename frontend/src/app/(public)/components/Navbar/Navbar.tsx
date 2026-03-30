@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, Info, HelpCircle, Database, Handshake, Mail, Users, Menu, X, Terminal, ShieldAlert } from 'lucide-react';
 
+// 🔥 THE NUCLEAR FIX: Import direct mn l-module jdid "NavMatrix"
 import NavBackground from './ui/backnav';
 import InscriptionBtn from './ui/InscriptionBtn';
 import styles from './Navbar.module.css';
@@ -15,6 +16,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  // Monitoring d l-ecran bash n-bloquiw l-hover f mobile
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 900);
     checkMobile();
@@ -36,10 +38,11 @@ export default function Navbar() {
     <>
       <div className={styles.fixedCenterWrapper}>
         <nav 
-          className={`${styles.navMorphContainer} ${isHovered && !isMobile ? 'nav-hovered' : ''}`}
+          className={`${styles.navMorphContainer} ${isHovered && !isMobile ? styles.navHovered : ''}`}
           onMouseEnter={() => !isMobile && setIsHovered(true)}
           onMouseLeave={() => !isMobile && setIsHovered(false)}
         >
+          {/* 💥 THE BACKGROUND CORE */}
           <NavBackground />
 
           {/* --- LEFT: LOGO OFFICIEL --- */}
@@ -74,12 +77,12 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* --- RIGHT: INSCRIPTION (DESKTOP) --- */}
+          {/* --- RIGHT: ACTIONS --- */}
           <div className={styles.actionSection}>
             <InscriptionBtn />
           </div>
 
-          {/* --- MOBILE: HAMBURGER BUTTON --- */}
+          {/* --- MOBILE: TOGGLE --- */}
           <button className={styles.mobileToggle} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={28} color="#00d2ff" /> : <Menu size={28} color="#00d2ff" />}
           </button>
@@ -88,7 +91,7 @@ export default function Navbar() {
         </nav>
       </div>
 
-      {/* 💥 MOBILE: DROPDOWN MENU (M-fre9 3la l-wrapper bach y-t-cliqua) */}
+      {/* --- MOBILE DROPDOWN (M-Bni b7al l-Terminal) --- */}
       <div className={`${styles.mobileNav} ${mobileMenuOpen ? styles.mobileNavOpen : ''}`}>
         {links.map((link) => (
           <Link 
@@ -102,7 +105,7 @@ export default function Navbar() {
           </Link>
         ))}
         <Link href="/inscription" className={styles.mobileCyberBtn} onClick={() => setMobileMenuOpen(false)}>
-          S'INSCRIRE MAINTENANT
+          <Terminal size={18} /> INITIALISER L'INSCRIPTION
         </Link>
       </div>
     </>
