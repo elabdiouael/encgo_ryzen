@@ -8,28 +8,27 @@ export interface ParticipantDto {
   email: string;
   telephone: string;
   etablissement: string;
-  niveauEtude: string; // 🔥 JDID
+  niveauEtude: string;
   role?: Role | string; 
 }
 
 export interface EquipeDto {
   id: number;
   nomEquipe: string;
-  region: string;              // 🔥 JDID
-  ville: string;               // 🔥 JDID
-  experienceHackathon: string; // 🔥 JDID
+  region: string;
+  ville: string;
+  experienceHackathon: string;
   detailsExperience?: string;  
-  competencesEquipe: string[]; // 🔥 JDID
+  competencesEquipe: string[];
   motivation: string;          
   comprehensionTheme: string;  
-  aUneIdee: boolean;           // 🔥 JDID
+  aUneIdee: boolean;
   titreProjet?: string;        
   descriptionProjet?: string;  
   problemeIdentifie?: string;  
   impactPotentiel?: string;    
   faisabilite?: string;        
   ambitionApres?: string;      
-  projetIdee?: string;         // L-9dim (Au cas où)
   dateInscription: string;
   membres: ParticipantDto[]; 
 }
@@ -66,13 +65,14 @@ export interface SponsorshipRequest {
   message: string;
 }
 
+// 🔥 THE FIXED INTERFACE: Synchronisée avec le Dashboard Admin
 export interface DashboardStats {
   totalEquipes: number;
   totalParticipants: number;
   projetsSoumis: number;
-  totalSponsors: number;   // 🔥 ADDED
-  totalMessages: number;   // 🔥 ADDED
-  totalArchives: number;   // 🔥 ADDED
+  totalSponsors: number;
+  totalMessages: number;
+  totalArchives: number;
   serverStatus: string;
 }
 

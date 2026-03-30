@@ -1,14 +1,7 @@
-import { InscriptionRequest, InscriptionResponse, ContactMessage, SponsorshipRequest, DashboardStats, EquipeDto } from '../types';
+import { InscriptionRequest, InscriptionResponse, ContactMessage, SponsorshipRequest, DashboardStats, EquipeDto, ArchiveSlotData } from '../types';
 
-// 🔥 THE LOCALHOST FIX: Daba l-Frontend ghadi y-hder m3a IntelliJ nichan!
-
-// 1. KHEBBI LOCALHOST (Dir liha // f l-lowel)
-// const API_BASE_URL = 'http://localhost:8080/api/v1'; 
-
-// 2. CH3EL HUGGING FACE (7iyd liha // mn l-lowel)
+// 🔥 CONFIGURATION URL: Hugging Face LIVE
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://elabdi48-ing-ryzen-encg-backend.hf.space/api/v1';
-// 💡 MULA7ADA: Mnin tbghi t-sifet l-Projet l-Vercel f l-Kher, 7iyd // mn s-ster li t7t w dakhil // f s-ster li l-fou9
-// const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://elabdi48-ing-ryzen-encg-backend.hf.space/api/v1';
 
 export interface ContactMessageDto {
   nom: string;
@@ -17,60 +10,36 @@ export interface ContactMessageDto {
   message: string;
 }
 
-export interface ArchiveSlotData {
-  id?: number;
-  category: string;
-  title: string;
-  description: string;
-  imageUrl?: string;
-  videoUrl?: string;
-}
-
 export const apiService = {
   
   inscrireEquipe: async (data: any) => {
-    console.log("📥 [DATA BRUTE DU FORMULAIRE] :", data);
-
-    // 💥 THE SANITIZER PROTOCOL: N-n9iw l-Data bach Spring Boot ma-y-l9a ta sebba y-refusé!
     const springBootPayload = {
-      nomEquipe: data.nomEquipe || "ÉQUIPE ALPHA TEST",
+      nomEquipe: data.nomEquipe || "ÉQUIPE SANS NOM",
       region: data.region || "Oriental",
       ville: data.ville || "Oujda",
-      
       experienceHackathon: data.experienceHackathon || "NON",
       detailsExperience: data.detailsExperience || "Aucune",
-      
-      // 🔥 FIX: Ila kan array khawi, n-3tiwh valeur par défaut bach y-douz mn @NotEmpty
       competencesEquipe: (data.competencesEquipe && data.competencesEquipe.length > 0) 
                          ? data.competencesEquipe 
-                         : ["Développement Web"],
-                         
-      motivation: data.motivation || "Motivation par défaut pour tester la DB",
-      comprehensionTheme: data.comprehensionTheme || "Compréhension validée",
-      
+                         : ["Développement"],
+      motivation: data.motivation || "Motivation Ryzen",
+      comprehensionTheme: data.comprehensionTheme || "Thème validé",
       aUneIdee: data.aUneIdee || false,
-      titreProjet: data.titreProjet || "Projet Test X",
-      descriptionProjet: data.descriptionProjet || "Description...",
-      problemeIdentifie: data.problemeIdentifie || "Problème...",
-      impactPotentiel: data.impactPotentiel || "Impact...",
-      faisabilite: data.faisabilite || "Faisable",
-      ambitionApres: data.ambitionApres || "Start-up",
-      
-      // 🔥 FIX DYAL L-MEMBRES (T-n9iya d l-Nmra d tel w chrout)
+      titreProjet: data.titreProjet || "",
+      descriptionProjet: data.descriptionProjet || "",
+      problemeIdentifie: data.problemeIdentifie || "",
+      impactPotentiel: data.impactPotentiel || "",
+      faisabilite: data.faisabilite || "",
+      ambitionApres: data.ambitionApres || "",
       membres: (data.membres || []).map((m: any, index: number) => ({
-        nomComplet: m.nomComplet || m.nom || `Opérateur ${index + 1}`,
-        email: m.email || `membre${index}@ryzen.com`,
-        
-        // 🚨 THE SNIPER FIX: N-7iydou l-espaces w l-hrouf mn nmra bach d-douz f l-Regex d Spring Boot "^(05|06|07)[0-9]{8}$"
+        nomComplet: m.nomComplet || `Membre ${index + 1}`,
+        email: m.email || `user${index}@hackathon.com`,
         telephone: (m.telephone || "0600000000").replace(/\s+/g, '').replace(/[^0-9]/g, '').substring(0, 10),
-        
-        etablissement: m.etablissement || "ENCG Oujda",
+        etablissement: m.etablissement || "ENCG",
         niveauEtude: m.niveauEtude || "Bac+3",
         role: m.role || (index === 0 ? "CHEF" : "MEMBRE")
       }))
     };
-
-    console.log("📤 [PAYLOAD ENVOYÉ À SPRING BOOT] :", JSON.stringify(springBootPayload, null, 2));
 
     const response = await fetch(`${API_BASE_URL}/inscriptions`, {
       method: 'POST',
@@ -80,32 +49,19 @@ export const apiService = {
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error("🔥 REJET DU BACKEND (400 BAD REQUEST) :", errorText);
-      throw new Error(errorText || "Erreur inconnue lors de l'inscription");
+      throw new Error(errorText || "Erreur lors de l'envoi");
     }
-    
     return response.json();
   },
 
   sendContactMessage: async (data: ContactMessageDto) => {
-    try {
-      const res = await fetch(`${API_BASE_URL}/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      
-      if (!res.ok) {
-        const errorText = await res.text(); 
-        console.error("🔥 Spring Boot a rejeté la requête :", errorText);
-        throw new Error(errorText || 'Erreur de connexion au backend');
-      }
-      
-      return await res.text();
-    } catch (error) {
-      console.error("Fetch Error:", error);
-      throw error; 
-    }
+    const res = await fetch(`${API_BASE_URL}/contact`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) throw new Error('Erreur Backend');
+    return await res.text();
   },
 
   sendSponsorshipRequest: async (data: SponsorshipRequest): Promise<string> => {
@@ -114,19 +70,21 @@ export const apiService = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
-    if (!response.ok) throw new Error('Erreur lors de la demande de partenariat');
+    if (!response.ok) throw new Error('Erreur Sponsoring');
     return response.text();
   },
 
-getStats: async (): Promise<DashboardStats> => {
+  getStats: async (): Promise<DashboardStats> => {
     try {
       const response = await fetch(`${API_BASE_URL}/stats`, { cache: 'no-store' });
-      if (!response.ok) throw new Error('Erreur fetch stats');
+      if (!response.ok) throw new Error('Erreur stats');
       return await response.json();
     } catch (error) {
-      // 🔥 THE FIX: Rjja3 les mêmes noms li k-y-9elleb 3lihom l-Dashboard
+      // 🔥 THE SHIELD FIX: Rjja3 ga3 l-khayrat bach Vercel build ma-y-t-plantash
       return {
         totalEquipes: 0,
+        totalParticipants: 0,
+        projetsSoumis: 0,
         totalSponsors: 0,
         totalMessages: 0,
         totalArchives: 0,
@@ -138,34 +96,22 @@ getStats: async (): Promise<DashboardStats> => {
   getEquipes: async (): Promise<EquipeDto[]> => {
     try {
       const response = await fetch(`${API_BASE_URL}/equipes`, { cache: 'no-store' });
-      if (!response.ok) throw new Error('Erreur fetch equipes');
       return await response.json();
-    } catch (error) {
-      console.log("Impossible de joindre le Backend. Assurez-vous que Spring Boot est lancé.");
-      return []; 
-    }
+    } catch (e) { return []; }
   },
 
   getSponsors: async (): Promise<SponsorshipRequest[]> => {
     try {
       const response = await fetch(`${API_BASE_URL}/sponsors`, { cache: 'no-store' });
-      if (!response.ok) throw new Error('Erreur fetch sponsors');
       return await response.json();
-    } catch (error) {
-      console.log("Backend offline pour Sponsors.");
-      return [];
-    }
+    } catch (e) { return []; }
   },
 
   getMessages: async (): Promise<ContactMessage[]> => {
     try {
       const response = await fetch(`${API_BASE_URL}/contact`, { cache: 'no-store' });
-      if (!response.ok) throw new Error('Erreur fetch messages');
       return await response.json();
-    } catch (error) {
-      console.log("Backend offline pour Messages.");
-      return [];
-    }
+    } catch (e) { return []; }
   },
 
   replyToMessage: async (id: number, reponse: string): Promise<string> => {
@@ -174,15 +120,12 @@ getStats: async (): Promise<DashboardStats> => {
       headers: { 'Content-Type': 'text/plain' },
       body: reponse,
     });
-    if (!response.ok) throw new Error('Erreur lors de la réponse');
     return response.text();
   },
 
-  // --- ARCHIVE CMS ---
   getArchives: async (): Promise<ArchiveSlotData[]> => {
     try {
       const res = await fetch(`${API_BASE_URL}/archives`, { cache: 'no-store' });
-      if (!res.ok) throw new Error('Erreur fetch archives');
       return await res.json();
     } catch (e) { return []; }
   },
@@ -193,13 +136,11 @@ getStats: async (): Promise<DashboardStats> => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
-    if (!res.ok) throw new Error('Erreur ajout archive');
     return await res.json();
   },
 
   deleteArchive: async (id: number): Promise<string> => {
     const res = await fetch(`${API_BASE_URL}/archives/${id}`, { method: 'DELETE' });
-    if (!res.ok) throw new Error('Erreur suppression archive');
     return await res.text();
   },
 };
