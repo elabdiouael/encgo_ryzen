@@ -1,0 +1,2 @@
+.pageArchitect { position: relative; min-height: 100vh; background-color: #010103; overflow-x: hidden; }
+.parallaxWrapper { position: relative; z-index: 10; width: 100%; padding-top: 140px; will-change: transform; }

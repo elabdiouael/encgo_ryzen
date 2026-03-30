@@ -1,0 +1,50 @@
+.bgWrapper { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; background: #010103; z-index: 0; perspective: 1000px; }
+
+.cyberRealm { position: absolute; top: -20%; left: -20%; width: 140%; height: 140%; transform-style: preserve-3d; will-change: transform; transition: transform 0.2s ease-out; }
+
+/* L-GRID L-ASLIYA */
+.warpGrid {
+  position: absolute; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: perspective(1000px) rotateX(75deg);
+  transform-origin: center calc(50% + 200px);
+  animation: idleScroll 15s linear infinite;
+  box-shadow: inset 0 0 100px rgba(0,0,0,1);
+}
+
+/* \ud83d\ude80 Mnin k-t-hoveri 3la chi carte, l-Grid k-t-t9leb Loun w k-t-jri b zerba (Warp Speed) */
+.warpGrid.warpSpeed {
+  background-image: 
+    linear-gradient(var(--theme-glow) 2px, transparent 2px),
+    linear-gradient(90deg, var(--theme-glow) 2px, transparent 2px);
+  animation: warpScroll 1.5s linear infinite; /* Sser3a Jnouniya */
+  filter: drop-shadow(0 0 10px var(--theme-color));
+}
+
+@keyframes idleScroll { 100% { background-position: 0 80px; } }
+@keyframes warpScroll { 100% { background-position: 0 400px; } }
+
+/* THE REACTOR (L-Glow L-Wstani) */
+.coreReactor {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 80vw; height: 80vh; border-radius: 50%;
+  background: radial-gradient(ellipse at center, var(--theme-glow) 0%, transparent 70%);
+  filter: blur(80px); transition: all 0.5s ease;
+  animation: pulseCore 5s alternate infinite;
+}
+
+.coreReactor.coreExplode { width: 120vw; height: 120vh; opacity: 1; filter: blur(50px); }
+
+@keyframes pulseCore { 0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.9); } 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); } }
+
+/* PARTICLES */
+.spark { position: absolute; bottom: -10%; width: 2px; height: 20px; background: var(--theme-color); box-shadow: 0 0 10px var(--theme-color); animation: flyUp 8s linear infinite; opacity: 0; }
+.spark.sparkFast { height: 100px; animation: flyUpFast 1s linear infinite; }
+
+@keyframes flyUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.5; } 100% { transform: translateY(-120vh); opacity: 0; } }
+@keyframes flyUpFast { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-120vh); opacity: 0; } }
+
+.vignette { position: absolute; top: 0; left: 0; width: 100%; height: 100%; box-shadow: inset 0 0 300px rgba(0, 0, 0, 0.98); pointer-events: none; }

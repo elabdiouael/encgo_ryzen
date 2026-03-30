@@ -1,0 +1,145 @@
+.tableContainer {
+  background: rgba(10, 10, 15, 0.6);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-x: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.cyberTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.cyberTable th {
+  padding: 15px 20px;
+  color: #8a8a9a;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tableRow {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* Hover Effect Mejnouuun 3la l-ligne */
+.tableRow:hover {
+  background: rgba(188, 19, 254, 0.05);
+  transform: scale(1.01);
+  box-shadow: inset 4px 0 0 #00d2ff; /* Khtiyat cyan f l-jnb */
+}
+
+.cyberTable td {
+  padding: 15px 20px;
+  color: #d1d1d1;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+.cellId {
+  color: #00d2ff !important;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.cellName {
+  color: #fff !important;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.cellProject {
+  color: #a0a0a0;
+  font-style: italic;
+}
+
+.cellDate {
+  font-family: monospace;
+  color: #bc13fe;
+}
+
+/* Badges d l-Membres w Statut */
+.membersBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statusValid, .statusInvalid {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.statusValid {
+  background: rgba(0, 255, 170, 0.1);
+  color: #00ffaa;
+  border: 1px solid rgba(0, 255, 170, 0.3);
+}
+
+.statusInvalid {
+  background: rgba(255, 51, 51, 0.1);
+  color: #ff3333;
+  border: 1px solid rgba(255, 51, 51, 0.3);
+}
+
+/* Bouton d'Action */
+.actionBtn {
+  background: transparent;
+  border: none;
+  color: #8a8a9a;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionBtn:hover {
+  color: #00d2ff;
+  background: rgba(0, 210, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  background: rgba(10, 10, 15, 0.6);
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  color: #8a8a9a;
+  text-align: center;
+}
+
+.emptyIcon {
+  color: #ff3333;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 10px rgba(255, 51, 51, 0.4));
+}
+
+.emptyState h3 {
+  color: #fff;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}

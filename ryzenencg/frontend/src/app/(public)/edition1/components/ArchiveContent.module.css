@@ -1,0 +1,155 @@
+.terminalContainer {
+  width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px 100px;
+  position: relative; z-index: 10;
+}
+
+/* 🚀 BENTO GRID LAYOUT */
+.bentoGrid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+
+/* ======================================================= */
+/* BASE WIDGET STYLE (THE CARDS)                           */
+/* ======================================================= */
+.bentoCard {
+  position: relative; background: rgba(5, 5, 12, 0.45); backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px;
+  padding: 35px; display: flex; flex-direction: column; gap: 20px;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: inset 0 0 20px rgba(0, 210, 255, 0.02), 0 10px 30px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.bentoCard::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transform: skewX(-20deg); transition: 0.5s; pointer-events: none;
+}
+.bentoCard:hover::before { left: 200%; transition: 0.8s; }
+
+.bentoCard:hover {
+  transform: translateY(-5px); border-color: rgba(0, 210, 255, 0.4);
+  box-shadow: inset 0 0 40px rgba(0, 210, 255, 0.08), 0 20px 40px rgba(0,0,0,0.8), 0 0 20px rgba(188, 19, 254, 0.2);
+}
+
+.widgetHeader {
+  display: flex; align-items: center; gap: 10px; font-family: monospace; font-size: 0.8rem;
+  color: #8a8a9a; font-weight: bold; letter-spacing: 1px; border-bottom: 1px dashed rgba(255,255,255,0.1);
+  padding-bottom: 12px; margin-bottom: 5px; text-transform: uppercase;
+}
+.iconCyan { color: #00d2ff; filter: drop-shadow(0 0 5px #00d2ff); } 
+.iconPurple { color: #bc13fe; filter: drop-shadow(0 0 5px #bc13fe); }
+
+/* ======================================================= */
+/* WIDGET 1 : RAPPORT CLASSIFIÉ (TEXTE + HOMMAGE)          */
+/* ======================================================= */
+.heroWidget { grid-column: span 7; justify-content: flex-start; }
+.mainTitle { font-size: clamp(2rem, 3.5vw, 3.8rem); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: 1px; text-shadow: 0 0 20px rgba(0,0,0,0.8); margin-bottom: 10px; }
+.highlight { color: transparent; -webkit-text-stroke: 1px #00d2ff; text-shadow: 0 0 15px rgba(0, 210, 255, 0.4); }
+
+/* L-Texte Jdid M-formati b-tari9a d 2080 */
+.classifiedText {
+  display: flex; flex-direction: column; gap: 15px;
+  color: #a0a0b0; font-size: 1.05rem; line-height: 1.7; text-align: justify;
+  background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; border-left: 2px solid rgba(0,210,255,0.3);
+}
+.classifiedText p { margin: 0; }
+
+.textCyan { color: #00d2ff; text-shadow: 0 0 8px rgba(0, 210, 255, 0.4); }
+.textPurple { color: #bc13fe; font-weight: bold; }
+/* L-Hommage (Gold Color) */
+.textGold { color: #ffd700; font-weight: 900; text-shadow: 0 0 15px rgba(255, 215, 0, 0.5); display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; background: rgba(255, 215, 0, 0.1); border-radius: 4px; border: 1px solid rgba(255, 215, 0, 0.3); }
+.inlineIcon { animation: pulseStar 2s infinite alternate; }
+@keyframes pulseStar { 100% { transform: scale(1.2); filter: drop-shadow(0 0 10px #ffd700); } }
+
+/* Bouton UMP */
+.cyberButton { display: inline-flex; align-items: center; gap: 10px; background: rgba(0, 210, 255, 0.05); border: 1px solid rgba(0, 210, 255, 0.5); color: #fff; padding: 14px 28px; border-radius: 8px; font-family: monospace; font-size: 0.9rem; font-weight: bold; text-decoration: none; width: fit-content; position: relative; overflow: hidden; transition: 0.4s; box-shadow: 0 0 15px rgba(0,210,255,0.1); margin-top: auto; }
+.cyberButton:hover { background: rgba(0, 210, 255, 0.2); box-shadow: 0 0 30px rgba(0, 210, 255, 0.4); border-color: #fff; transform: scale(1.02); }
+.btnArrow { transition: 0.3s; } .cyberButton:hover .btnArrow { transform: translateX(8px); color: #bc13fe; }
+.btnScanline { position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(188, 19, 254, 0.5), transparent); transform: skewX(-20deg); }
+.cyberButton:hover .btnScanline { animation: flashBtn 0.6s ease-out; }
+
+/* ======================================================= */
+/* WIDGET 2 : PRESSE                                       */
+/* ======================================================= */
+.pressWidget { grid-column: span 5; }
+.pressImageContainer { position: relative; width: 100%; height: 100%; min-height: 350px; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(188, 19, 254, 0.3); cursor: pointer; }
+.pressImg { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(60%) contrast(1.2); transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); opacity: 0.6; }
+.pressImageContainer:hover .pressImg { filter: grayscale(0%) contrast(1.1); transform: scale(1.05); opacity: 1; }
+.glassOverlay { position: absolute; inset: 0; background: rgba(188, 19, 254, 0.15); display: flex; align-items: center; justify-content: center; transition: 0.4s; backdrop-filter: blur(2px); z-index: 2; }
+.pressImageContainer:hover .glassOverlay { opacity: 0; backdrop-filter: blur(0px); }
+.overlayText { border: 1px solid #bc13fe; background: rgba(0,0,0,0.8); color: #bc13fe; padding: 6px 20px; font-family: monospace; font-size: 0.85rem; font-weight: bold; border-radius: 4px; letter-spacing: 2px; box-shadow: 0 0 15px rgba(188,19,254,0.4); }
+.scanBar { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #bc13fe; box-shadow: 0 0 15px #bc13fe, 0 0 30px #bc13fe; animation: pressScan 3s linear infinite alternate; opacity: 0; z-index: 3; }
+.pressImageContainer:hover .scanBar { opacity: 1; }
+@keyframes pressScan { 100% { top: 100%; } }
+
+/* ======================================================= */
+/* WIDGET 3 : PARTNERS (INFINITE MARQUEE CAROUSEL)         */
+/* ======================================================= */
+.partnersWidget { grid-column: span 12; padding: 25px 35px; }
+
+/* L-Container d l-Marquee m3a mask bach y-fadi f l-jnab */
+.marqueeContainer {
+  width: 100%; overflow: hidden; position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  padding: 10px 0;
+}
+
+/* L-Khet li k-iy-7rek tsawer (width x2 hit 3ndna array m-doubla) */
+.marqueeTrack {
+  display: flex; width: max-content;
+  animation: scrollMarquee 25s linear infinite;
+}
+
+/* Ila 7etit l-souris l-animation k-t-w9ef (Optional UX upgrade) */
+.marqueeContainer:hover .marqueeTrack { animation-play-state: paused; }
+
+@keyframes scrollMarquee {
+  0% { transform: translateX(0); }
+  /* K-y-t-7rek b -50% 7it array m-doubla (100% dyal l-array l-asliya) */
+  100% { transform: translateX(-50%); } 
+}
+
+.logoSlot {
+  width: 250px; height: 100px; display: flex; justify-content: center; align-items: center;
+  margin: 0 20px; transition: 0.3s;
+}
+
+.logoSlot img {
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  filter: grayscale(100%) brightness(0.7); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logoSlot:hover img {
+  filter: grayscale(0%) brightness(1); transform: scale(1.15); filter: drop-shadow(0 0 15px rgba(255,255,255,0.3));
+}
+
+/* ======================================================= */
+/* WIDGET 4 : GALLERY TACTIQUE                             */
+/* ======================================================= */
+.galleryWidget { grid-column: span 12; margin-top: 20px; }
+.tacticalGallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+
+.holoSlot { position: relative; aspect-ratio: 4/3; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); cursor: crosshair; }
+.tacticalImg { width: 100%; height: 100%; object-fit: cover; filter: grayscale(80%) opacity(0.6); transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+.slotOverlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,210,255,0.1), transparent); pointer-events: none; transition: 0.4s; }
+.holoSlot:hover .tacticalImg { filter: grayscale(0%) opacity(1); transform: scale(1.15); }
+.holoSlot:hover .slotOverlay { background: transparent; }
+
+.hudTL, .hudBR { position: absolute; width: 20px; height: 20px; border: 3px solid transparent; transition: 0.3s; z-index: 5; pointer-events: none; }
+.hudTL { top: 10px; left: 10px; border-top-color: #00d2ff; border-left-color: #00d2ff; }
+.hudBR { bottom: 10px; right: 10px; border-bottom-color: #bc13fe; border-right-color: #bc13fe; }
+.holoSlot:hover .hudTL, .holoSlot:hover .hudBR { width: 30px; height: 30px; filter: drop-shadow(0 0 10px currentColor); }
+
+.imageScanner { position: absolute; top: -100%; left: 0; width: 100%; height: 3px; background: rgba(0, 210, 255, 0.8); box-shadow: 0 0 20px #00d2ff; opacity: 0; pointer-events: none; z-index: 10; }
+.holoSlot:hover .imageScanner { opacity: 1; animation: imgScan 1.5s linear infinite; }
+@keyframes imgScan { 100% { top: 200%; } }
+
+/* ======================================================= */
+/* RESPONSIVE                                              */
+/* ======================================================= */
+@media (max-width: 900px) {
+  .heroWidget { grid-column: span 12; }
+  .pressWidget { grid-column: span 12; }
+  .pressImageContainer { min-height: 250px; }
+  .logoSlot { width: 180px; height: 80px; }
+}

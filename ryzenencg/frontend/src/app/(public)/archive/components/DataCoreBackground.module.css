@@ -1,0 +1,52 @@
+.coreWrapper {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: #010103; overflow: hidden; z-index: 0;
+}
+
+/* L-Hexagon Grid b Pure CSS Magic */
+.hexGrid {
+  position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background-image: 
+    radial-gradient(rgba(0, 210, 255, 0.1) 2px, transparent 2.5px),
+    radial-gradient(rgba(188, 19, 254, 0.05) 1px, transparent 1.5px);
+  background-size: 60px 60px, 30px 30px;
+  background-position: 0 0, 15px 15px;
+  transform: perspective(1000px) rotateX(60deg) translateY(-100px);
+  animation: dataFlow 20s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes dataFlow {
+  0% { transform: perspective(1000px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(1000px) rotateX(60deg) translateY(60px); }
+}
+
+/* Scanner Line li kiy-scanni l-archives */
+.scannerLine {
+  position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+  background: #00d2ff;
+  box-shadow: 0 0 20px #00d2ff, 0 0 40px rgba(0, 210, 255, 0.5), 0 0 80px rgba(0, 210, 255, 0.2);
+  opacity: 0.6;
+  animation: scanCore 6s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes scanCore {
+  0% { top: -10%; opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { top: 110%; opacity: 0; }
+}
+
+.glowLeft, .glowRight {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40vw; height: 60vh; border-radius: 50%; filter: blur(100px); opacity: 0.2;
+}
+.glowLeft { left: -20%; background: #00d2ff; }
+.glowRight { right: -20%; background: #bc13fe; }
+
+.noiseOverlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 2; mix-blend-mode: overlay;
+}

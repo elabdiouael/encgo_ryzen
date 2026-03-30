@@ -1,0 +1,60 @@
+/* DESIGN HACKER TERMINAL: Khfif, Solid, N9i */
+.inputWrapper { display: flex; flex-direction: column; width: 100%; position: relative; margin-top: 15px; }
+
+.inputContainer {
+  position: relative; display: flex; align-items: flex-start;
+  background: #08080c; /* 💥 FIX: Loun solid, zero blur, zero lag! */
+  border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+
+.iconBox { padding: 16px 0 16px 16px; color: #555566; display: flex; align-items: center; transition: color 0.2s; z-index: 2; }
+
+.cyberField {
+  flex: 1; width: 100%; background: transparent; border: none; color: #fff;
+  padding: 16px; font-size: 1rem; font-family: monospace; outline: none; z-index: 2;
+  resize: vertical; min-height: 56px;
+}
+.isSelect { cursor: pointer; appearance: none; }
+.cyberOption { background: #0a0a0f; color: #fff; font-family: monospace; padding: 10px; }
+
+/* 🌟 FLOATING LABEL N9I */
+.cyberLabel {
+  position: absolute; left: 16px; top: 18px; color: #666677; font-family: monospace; font-size: 0.95rem;
+  pointer-events: none; transition: all 0.2s ease-out; z-index: 3;
+}
+.iconBox + .cyberField + .cyberLabel, .iconBox + .customSelectValue + .cyberLabel { left: 45px; }
+
+.cyberField:focus ~ .cyberLabel, .cyberField:not(:placeholder-shown) ~ .cyberLabel, .labelUp {
+  top: -10px !important; left: 12px !important; font-size: 0.75rem !important; color: var(--theme-color) !important;
+  background: #010103 !important; padding: 0 8px !important; border-radius: 4px; font-weight: bold; letter-spacing: 1px;
+}
+
+/* FAST INTERACTIONS */
+.cyberField:focus ~ .iconBox, .selectOpen .iconBox { color: var(--theme-color); }
+.inputContainer:focus-within, .selectOpen { border-color: var(--theme-color) !important; background: #0a0a12; }
+
+/* CUSTOM SELECT DROPDOWN FAST */
+.customSelectContainer { cursor: pointer; align-items: center; }
+.customSelectValue { display: flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 40px; }
+.isEmpty { opacity: 0; }
+.selectArrow { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color: #555566; z-index: 2; pointer-events: none; }
+.arrowUp { transform: translateY(-50%) rotate(180deg); color: var(--theme-color); }
+
+.dropdownMenu {
+  position: absolute; top: calc(100% + 4px); left: 0; width: 100%;
+  background: #08080c; border: 1px solid var(--theme-color); border-radius: 6px;
+  max-height: 250px; overflow-y: auto; z-index: 99; box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+}
+.dropdownMenu::-webkit-scrollbar { width: 6px; }
+.dropdownMenu::-webkit-scrollbar-track { background: #010103; }
+.dropdownMenu::-webkit-scrollbar-thumb { background: var(--theme-color); border-radius: 10px; }
+
+.dropdownOption { padding: 14px 20px; color: #a0a0b0; font-family: monospace; font-size: 0.95rem; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.dropdownOption:hover { background: rgba(var(--theme-color-rgb), 0.1); color: #fff; padding-left: 25px; border-left: 3px solid var(--theme-color); }
+.optionSelected { background: rgba(var(--theme-color-rgb), 0.15); color: var(--theme-color); font-weight: bold; border-left: 3px solid var(--theme-color); }
+
+/* ERROR */
+.hasError .inputContainer { border-color: #ff0055; }
+.hasError .cyberLabel { color: #ff0055 !important; }
+.errorText { color: #ff0055; font-size: 0.8rem; font-family: monospace; display: flex; align-items: center; gap: 5px; margin-top: 5px; }

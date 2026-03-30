@@ -1,0 +1,37 @@
+.engineWrapper {
+  position: relative; width: 100vw; min-height: 100vh;
+  /* L-Alwan L-Globalin dyal l-Page */
+  --theme-color: #00d2ff;
+  --theme-glow: rgba(0, 210, 255, 0.4);
+  transition: --theme-color 0.5s ease, --theme-glow 0.5s ease;
+  perspective: 1500px; /* \ud83d\udd25 L-SERR DYAL L-3D F L-PAGE KAMLA */
+}
+
+/* \ud83c\udfa8 L-ALWAN DYAL L-PAGE K-Y-TBEDDLOU 3LA 7SSAB L-HOVER */
+.engineWrapper[data-theme="register"] { --theme-color: #ff0055; --theme-glow: rgba(255, 0, 85, 0.4); }
+.engineWrapper[data-theme="archive"] { --theme-color: #00ffaa; --theme-glow: rgba(0, 255, 170, 0.4); }
+.engineWrapper[data-theme="about"] { --theme-color: #bc13fe; --theme-glow: rgba(188, 19, 254, 0.4); }
+.engineWrapper[data-theme="why"] { --theme-color: #ffd700; --theme-glow: rgba(255, 215, 0, 0.4); }
+.engineWrapper[data-theme="sponsors"] { --theme-color: #00d2ff; --theme-glow: rgba(0, 210, 255, 0.4); }
+
+.scrollPerspective { position: relative; z-index: 10; width: 100%; transform-style: preserve-3d; padding-top: 120px; }
+
+.contentLayout {
+  max-width: 1300px; margin: 0 auto; padding: 0 20px;
+  display: flex; flex-direction: column; gap: 60px;
+  transform-style: preserve-3d;
+}
+
+/* \ud83d\udca5 L-EFFET L-MEJNOUN : Mnin chi carte k-t-t-hovera, l-Texte l-Fou9ani k-y-ti7 l-lor */
+.hologramContainer {
+  transform-origin: center center;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.6s, filter 0.6s;
+}
+
+.dimmed {
+  transform: translateZ(-200px) translateY(-50px) rotateX(10deg);
+  opacity: 0.2; filter: blur(8px) grayscale(100%);
+  pointer-events: none;
+}
+
+.bentoContainer { transform-style: preserve-3d; }
