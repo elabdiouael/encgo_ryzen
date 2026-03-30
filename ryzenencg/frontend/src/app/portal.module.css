@@ -1,0 +1,74 @@
+.portalWrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #030305;
+  font-family: 'Inter', sans-serif;
+}
+
+.side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+}
+
+.publicSide {
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Hover Effects Mjnounin: L-Jiha li drti 3liha l-souris kat-kber chweya */
+.publicSide:hover {
+  flex: 1.15;
+  background: radial-gradient(circle at center, rgba(0, 210, 255, 0.05) 0%, transparent 70%);
+}
+
+.adminSide:hover {
+  flex: 1.15;
+  background: radial-gradient(circle at center, rgba(188, 19, 254, 0.05) 0%, transparent 70%);
+}
+
+.content {
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.iconPublic {
+  color: #00d2ff;
+  filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.6));
+  transition: transform 0.4s ease;
+}
+
+.iconAdmin {
+  color: #bc13fe;
+  filter: drop-shadow(0 0 15px rgba(188, 19, 254, 0.6));
+  transition: transform 0.4s ease;
+}
+
+.side:hover .iconPublic, 
+.side:hover .iconAdmin {
+  transform: scale(1.2) translateY(-10px);
+}
+
+.title {
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  margin: 0;
+}
+
+.desc {
+  color: #8a8a9a;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}

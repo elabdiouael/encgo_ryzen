@@ -1,0 +1,84 @@
+/* ⚠️ FORCER L-CURSEUR L-3ADI Y-KHEBBA */
+:global(html), :global(body), :global(a), :global(button), :global(input), :global(textarea) {
+  cursor: none !important;
+}
+
+.cursorDot, .cursorOutline {
+  position: fixed; top: 0; left: 0; pointer-events: none;
+  will-change: transform; /* 🔥 FORCE GPU ACCELERATION = ZERO LAG */
+}
+
+/* ------------------------------------- */
+/* 🔵 1. THE CORE (L-POINT)              */
+/* ------------------------------------- */
+.cursorDot {
+  z-index: 10001;
+  width: 6px; height: 6px;
+  margin: -3px 0 0 -3px; /* Centrage exact */
+  background-color: #00d2ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff;
+  transition: transform 0.15s ease-out, background-color 0.3s;
+}
+
+/* ------------------------------------- */
+/* ⭕ 2. THE HUD (L-OUTLINE DEFAULT)     */
+/* ------------------------------------- */
+.cursorOutline {
+  z-index: 10000;
+  width: 40px; height: 40px;
+  margin: -20px 0 0 -20px; /* Centrage exact */
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: width 0.3s, height 0.3s, border-radius 0.3s, background-color 0.3s;
+}
+
+/* L-Ring l-mdewwer k-iy-dour f l-7ala l-3adiya */
+.cursorOutline::before {
+  content: ''; position: absolute; width: 100%; height: 100%;
+  border-radius: 50%; border: 1px dashed rgba(188, 19, 254, 0.6);
+  animation: spinSlow 5s linear infinite;
+}
+
+@keyframes spinSlow { 100% { transform: rotate(360deg); } }
+
+/* ------------------------------------- */
+/* 💥 3. L-CLICK EFFECT                  */
+/* ------------------------------------- */
+.cursorDot.clicked { transform: scale(0.4) !important; background-color: #fff; }
+.cursorOutline.clicked { transform: scale(0.8) !important; }
+
+/* ------------------------------------- */
+/* 🔥 4. L-HOVER (TACTICAL MODE)         */
+/* ------------------------------------- */
+.cursorDot.hovered {
+  background-color: #bc13fe; box-shadow: 0 0 15px #bc13fe, 0 0 30px #bc13fe;
+}
+
+.cursorOutline.hovered {
+  width: 65px; height: 65px; margin: -32.5px 0 0 -32.5px;
+  border-radius: 8px; /* K-y-weli mora-ba3 */
+  border: 2px solid rgba(188, 19, 254, 0.8);
+  background-color: rgba(188, 19, 254, 0.1);
+  box-shadow: 0 0 20px rgba(188, 19, 254, 0.4), inset 0 0 15px rgba(0, 210, 255, 0.2);
+  /* Tactical Edges (Les coins k-y-t-7iydou) */
+  clip-path: polygon(0 15%, 15% 0, 85% 0, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0 85%);
+}
+
+/* N-7iydou l-Ring l-mdewwer mnin n-hoveri */
+.cursorOutline.hovered::before { display: none; }
+
+/* Crosshair (Croix) d l-Viseur k-iy-dour b chweya */
+.cursorOutline.hovered::after {
+  content: ''; position: absolute; width: 130%; height: 1px;
+  background: rgba(0, 210, 255, 0.5);
+  animation: targetLock 2s infinite ease-in-out alternate;
+}
+
+@keyframes targetLock { 0% { transform: rotate(-20deg); } 100% { transform: rotate(20deg); } }
+
+/* L-Laser Scanline li k-y-hbet w y-tle3 */
+.scannerLine { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: #00d2ff; box-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff; }
+.cursorOutline.hovered .scannerLine { display: block; animation: scanRadar 1.2s linear infinite alternate; }
+
+@keyframes scanRadar { 0% { top: 0%; opacity: 0.2; } 50% { opacity: 1; } 100% { top: 100%; opacity: 0.2; } }

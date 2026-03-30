@@ -1,0 +1,86 @@
+.topbar {
+  height: 80px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(5, 5, 5, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.cyberInput {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 15px;
+  width: 300px;
+  transition: all 0.3s ease;
+}
+
+.cyberInput:focus-within {
+  border-color: #00d2ff;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
+.searchIcon {
+  color: #8a8a9a;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+}
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.notification {
+  position: relative;
+  cursor: pointer;
+}
+
+.bell {
+  font-size: 1.4rem;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: #bc13fe;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #bc13fe;
+}
+
+.avatar img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #00d2ff;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.avatar img:hover {
+  transform: scale(1.1);
+}

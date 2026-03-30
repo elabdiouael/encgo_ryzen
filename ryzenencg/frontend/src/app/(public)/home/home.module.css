@@ -1,0 +1,187 @@
+/* ========================================== */
+/* 1. LAYOUT & SCROLL FIX (NATIVE PURE CSS)   */
+/* ========================================== */
+.pageWrapper { position: relative; width: 100vw; background-color: transparent; --theme-color: #00d2ff; transition: --theme-color 0.5s ease; font-family: system-ui, -apple-system, sans-serif; }
+
+/* 👑 L-BADGE TELEPORT DYAL L-GRAND MASTER (5s Visible, 5s Hidden) */
+.creatorBadge {
+  position: fixed; z-index: 9999; 
+  background: rgba(5, 5, 12, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 210, 255, 0.4); border-left: 4px solid #00d2ff;
+  padding: 12px 25px; border-radius: 12px; display: flex; align-items: center; gap: 15px;
+  pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0, 210, 255, 0.1);
+  animation: teleport 40s infinite; /* 40s Total = 4 positions * 10s (5s visible + 5s hidden) */
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.badgeGlow { position: absolute; inset: 0; background: radial-gradient(circle at left, rgba(0,210,255,0.25), transparent); }
+.fingerprintIcon { color: #00d2ff; filter: drop-shadow(0 0 10px #00d2ff); animation: scanFade 2s infinite alternate; }
+@keyframes scanFade { 0% { opacity: 0.3; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1.1); } }
+
+.badgeTextWrapper { display: flex; flex-direction: column; gap: 4px; }
+.badgeTop { color: #8a8a9a; font-family: monospace; font-size: 0.75rem; letter-spacing: 3px; font-weight: bold; }
+.badgeBottom { color: #e0e0f0; font-family: monospace; font-size: 0.95rem; letter-spacing: 1px; }
+.creatorName { color: #00ffaa; text-shadow: 0 0 15px rgba(0, 255, 170, 0.8); font-weight: 900; letter-spacing: 2px; }
+
+/* L-Maths d l-M3ellmin: 5s Ban, 5s Ghber = 10s per corner. 10s / 40s = 25% per cycle. 5s / 40s = 12.5% */
+@keyframes teleport {
+  0%, 12.5% { bottom: 40px; right: 40px; top: auto; left: auto; opacity: 1; transform: scale(1); }
+  13%, 24.9% { opacity: 0; transform: scale(0.5); }
+  25%, 37.5% { top: 40px; left: 40px; bottom: auto; right: auto; opacity: 1; transform: scale(1); }
+  38%, 49.9% { opacity: 0; transform: scale(0.5); }
+  50%, 62.5% { bottom: 40px; left: 40px; top: auto; right: auto; opacity: 1; transform: scale(1); }
+  63%, 74.9% { opacity: 0; transform: scale(0.5); }
+  75%, 87.5% { top: 40px; right: 40px; bottom: auto; left: auto; opacity: 1; transform: scale(1); }
+  88%, 100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* 🎬 HERO SECTION */
+.heroContainer { height: 100vh; width: 100%; position: relative; z-index: 5; pointer-events: none; }
+.heroSection { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; transition: opacity 0.1s; will-change: opacity; }
+.heroBadge { display: inline-flex; align-items: center; gap: 12px; color: var(--theme-color); font-family: monospace; font-size: 1.1rem; border: 1px solid var(--theme-color); padding: 12px 30px; border-radius: 4px; margin-bottom: 25px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); font-weight: bold; letter-spacing: 3px; box-shadow: inset 0 0 20px rgba(var(--theme-color), 0.2); }
+.zapPulse { animation: pulse 1s infinite alternate; } @keyframes pulse { 100% { transform: scale(1.2); filter: drop-shadow(0 0 10px var(--theme-color)); } }
+.megaTitle { font-size: clamp(3.5rem, 8vw, 8.5rem); font-weight: 900; color: #fff; line-height: 1; margin: 0 0 10px; letter-spacing: -2px; position: relative; text-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 50px var(--theme-color); pointer-events: auto; }
+.megaTitle::before, .megaTitle::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0.8; z-index: -1; pointer-events: none; }
+.megaTitle::before { left: 4px; text-shadow: -2px 0 #ff0055; clip: rect(44px, 900px, 56px, 0); animation: glitch 3s infinite linear alternate-reverse; }
+.megaTitle::after { left: -4px; text-shadow: -2px 0 var(--theme-color); clip: rect(44px, 900px, 56px, 0); animation: glitch2 2.5s infinite linear alternate-reverse; }
+@keyframes glitch { 0% { clip: rect(20px, 9999px, 80px, 0); } 100% { clip: rect(80px, 9999px, 20px, 0); } }
+@keyframes glitch2 { 0% { clip: rect(80px, 9999px, 20px, 0); } 100% { clip: rect(20px, 9999px, 80px, 0); } }
+.megaSubtitle { font-size: clamp(1.2rem, 3vw, 2.5rem); color: var(--theme-color); font-family: monospace; letter-spacing: 15px; font-weight: 300; margin-bottom: 50px; text-shadow: 0 0 20px var(--theme-color); }
+.scrollBtn { background: transparent; border: none; color: #a0a0b0; font-family: monospace; font-size: 1.1rem; letter-spacing: 3px; display: flex; flex-direction: column; align-items: center; gap: 15px; cursor: pointer; transition: 0.3s; position: absolute; bottom: 60px; pointer-events: auto; }
+.scrollBtn:hover { color: var(--theme-color); transform: translateY(5px); text-shadow: 0 0 10px var(--theme-color); }
+.bounceIcon { animation: bounce 2s infinite; } @keyframes bounce { 50% { transform: translateY(15px); } }
+
+/* ========================================== */
+/* 2. THE CYBER DECK (L-UI L-MFERGE3 X3026)   */
+/* ========================================== */
+/* 💥 FIX D L-BACKGROUND: 7iydt l-gradient l-k7el bach y-ban l-Background 3D mn lor! */
+.deckSection { position: relative; z-index: 10; min-height: 100vh; display: flex; align-items: center; padding: 100px 0; background: transparent; }
+.interfaceContainer { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; gap: 60px; align-items: center; }
+
+/* 💥 MAIN DISPLAY CARD */
+.mainDisplay { flex: 1; perspective: 2500px; position: relative; }
+
+/* DETAILS D 3026 F L-BACKGROUND D L-CARD */
+.cardNoise { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"); z-index: 1; pointer-events: none; border-radius: 0 24px 24px 0; }
+.cardCyberGrid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 30px 30px; z-index: 1; pointer-events: none; border-radius: 0 24px 24px 0; mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 80%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 80%); }
+.hexOverlay { position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background-image: radial-gradient(var(--theme-color) 2px, transparent 2px); background-size: 20px 20px; opacity: 0.1; border-radius: 50%; filter: blur(5px); z-index: 1; pointer-events: none; animation: spin 20s linear infinite; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* L-CARD B GLASSMORPHISM S7I7 */
+.displayContent { 
+  position: relative; z-index: 2;
+  background: linear-gradient(135deg, rgba(5, 5, 12, 0.4) 0%, rgba(10, 10, 18, 0.7) 100%); 
+  backdrop-filter: blur(35px); -webkit-backdrop-filter: blur(35px); 
+  border: 1px solid rgba(255, 255, 255, 0.08); border-left: 6px solid var(--theme-color); 
+  padding: 60px; border-radius: 0 24px 24px 0; 
+  box-shadow: inset 15px 0 50px rgba(255,255,255,0.03), 0 50px 100px rgba(0,0,0,0.9); 
+  clip-path: polygon(0 0, calc(100% - 50px) 0, 100% 50px, 100% 100%, 0 100%); 
+  transform-style: preserve-3d; will-change: transform;
+  animation: cardFloat 6s infinite alternate ease-in-out; 
+}
+@keyframes cardFloat { 0% { transform: translateY(0) rotateY(-2deg); } 100% { transform: translateY(-10px) rotateY(2deg); box-shadow: inset 15px 0 50px rgba(255,255,255,0.03), 0 60px 120px rgba(0,0,0,0.95), 0 0 50px rgba(var(--theme-color), 0.3); } }
+
+/* 3D Fold Animation */
+.glitchOut { animation: foldOut 0.25s forwards; }
+.glitchIn { animation: foldIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; transform-origin: left center; }
+@keyframes foldOut { 0% { transform: rotateY(0deg) scale(1); opacity: 1; } 100% { transform: rotateY(-15deg) scale(0.95); opacity: 0; filter: blur(5px); } }
+@keyframes foldIn { 0% { transform: rotateY(15deg) scale(0.95) translateZ(50px); opacity: 0; filter: blur(5px); } 100% { transform: rotateY(0deg) scale(1) translateZ(0); opacity: 1; filter: blur(0); } }
+
+/* TEXT & CONTENT DESIGN */
+.cardHeaderDesign { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 30px; }
+.badgeWrapper { display: inline-flex; align-items: center; gap: 15px; color: var(--theme-color); font-family: monospace; font-size: 1.1rem; font-weight: bold; letter-spacing: 3px; text-shadow: 0 0 10px rgba(var(--theme-color), 0.5); }
+.iconBox { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(0,0,0,0.5); border: 1px solid var(--theme-color); border-radius: 8px; box-shadow: inset 0 0 15px var(--theme-color); }
+.statusOk { display: flex; align-items: center; gap: 8px; background: rgba(0, 255, 170, 0.1); border: 1px solid #00ffaa; color: #00ffaa; padding: 6px 15px; border-radius: 4px; font-family: monospace; font-size: 0.85rem; font-weight: bold; box-shadow: 0 0 15px rgba(0,255,170,0.2); }
+.statusPulse { animation: blink 1.5s infinite; }
+
+.typewriterTitle { font-size: clamp(2.2rem, 3.5vw, 4rem); font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 15px; text-transform: uppercase; text-shadow: 0 0 30px rgba(0,0,0,0.8); overflow: hidden; white-space: nowrap; border-right: 4px solid var(--theme-color); width: 0; animation: typing 0.6s steps(40) 0.1s forwards, blinkCursor 0.5s step-end infinite alternate; will-change: width; }
+@keyframes typing { to { width: 100%; } } @keyframes blinkCursor { 50% { border-color: transparent; } }
+
+.subtitle { font-size: 1.3rem; color: var(--theme-color); font-weight: 400; margin-bottom: 30px; font-family: monospace; opacity: 0; animation: fadeIn 0.4s ease 0.6s forwards; text-shadow: 0 0 20px rgba(var(--theme-color), 0.5); }
+.textContent { color: #e0e0f0; font-size: 1.15rem; line-height: 1.8; margin-bottom: 50px; opacity: 0; animation: fadeIn 0.4s ease 0.8s forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+
+.quoteBlock { border-left: 4px solid var(--theme-color); background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent); padding: 25px 30px; font-style: italic; color: #fff; font-size: 1.25rem; font-weight: bold; margin: 30px 0; border-radius: 0 12px 12px 0; box-shadow: inset 10px 0 30px rgba(255,255,255,0.02); position: relative; overflow: hidden; }
+.quoteBlock::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transform: skewX(-20deg); animation: shine 6s infinite; }
+@keyframes shine { 10% { left: 200%; } 100% { left: 200%; } }
+
+/* ACTION BUTTON L-HBIL */
+.actionButton { 
+  display: inline-flex; align-items: center; gap: 15px; 
+  background: rgba(0,0,0,0.8); border: 1px solid var(--theme-color); color: var(--theme-color); 
+  padding: 18px 40px; font-family: monospace; font-size: 1.2rem; font-weight: bold; text-decoration: none; 
+  position: relative; overflow: hidden; transition: 0.3s ease; 
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)); 
+  opacity: 0; animation: fadeIn 0.4s ease 1s forwards; 
+}
+.btnHoverEffect { position: absolute; inset: 0; background: var(--theme-color); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; z-index: -1; }
+.btnMicroScan { position: absolute; top: 0; left: -100%; width: 10%; height: 100%; background: rgba(255,255,255,0.8); box-shadow: 0 0 20px #fff; animation: scanLine 3s infinite; }
+@keyframes scanLine { 100% { left: 200%; } }
+.actionButton:hover { color: #000; box-shadow: 0 0 30px var(--theme-color); padding-left: 50px; border-color: #fff; }
+.actionButton:hover .btnHoverEffect { transform: scaleX(1); }
+.arrow { transition: 0.3s; } .actionButton:hover .arrow { transform: translateX(8px); }
+
+/* HUD Crosshairs & Radar */
+.hudCrosshairTL, .hudCrosshairBR { position: absolute; width: 40px; height: 40px; border: 3px solid var(--theme-color); pointer-events: none; opacity: 0.6; }
+.hudCrosshairTL { top: 20px; left: 20px; border-right: none; border-bottom: none; }
+.hudCrosshairBR { bottom: 20px; right: 20px; border-left: none; border-top: none; }
+.hudRadarCircle { position: absolute; top: 50%; left: 50%; width: 500px; height: 500px; margin: -250px 0 0 -250px; border: 1px dashed rgba(var(--theme-color), 0.1); border-radius: 50%; pointer-events: none; animation: spin 20s linear infinite; z-index: 1; }
+.dataMetrics { position: absolute; bottom: 20px; left: 40px; display: flex; gap: 20px; font-family: monospace; font-size: 0.8rem; color: var(--theme-color); opacity: 0.7; }
+.metricBlink { color: #ff0055; animation: blink 1s infinite alternate; }
+.scanLaser { position: absolute; top: -100%; left: 0; width: 100%; height: 2px; background: var(--theme-color); box-shadow: 0 0 20px var(--theme-color), 0 0 40px var(--theme-color); animation: laser 4s linear infinite; pointer-events: none; opacity: 0.4; z-index: 20; }
+@keyframes laser { 100% { top: 200%; } }
+
+/* ========================================== */
+/* 💥 COMMAND MENU (LES BOUTONS x3026)        */
+/* ========================================== */
+.commandMenu { width: 500px; display: flex; flex-direction: column; gap: 25px; position: relative; z-index: 20; }
+.menuHeader { display: flex; align-items: center; gap: 15px; font-family: monospace; color: #6a6a7a; font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 10px; }
+.menuHeaderLine { flex: 1; height: 1px; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.2) 0, rgba(255,255,255,0.2) 5px, transparent 5px, transparent 10px); }
+.menuList { display: flex; flex-direction: column; gap: 18px; }
+
+.menuBtn { 
+  width: 100%; display: flex; align-items: center; gap: 20px; 
+  background: rgba(10,10,15,0.6); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.05); color: #8a8a9a; padding: 22px 30px; cursor: pointer; 
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  font-family: monospace; font-size: 1.15rem; font-weight: bold; letter-spacing: 1px; 
+  position: relative; overflow: hidden; transform: translateZ(0); 
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px)); 
+}
+
+.nodeIcon { display: flex; align-items: center; justify-content: center; width: 45px; height: 45px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; transition: 0.4s; z-index: 2; }
+.nodeLabel { position: relative; z-index: 2; transition: 0.3s; }
+
+/* 🚨 DATA STREAM F L-BACKGROUND DYAL L-BOUTON 🚨 */
+.dataStream { position: absolute; top: 0; left: 0; width: 200%; height: 100%; background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(255,255,255,0.02) 10px, rgba(255,255,255,0.02) 20px); opacity: 0; transition: 0.3s; z-index: 1; pointer-events: none; }
+.menuBtn:hover .dataStream { opacity: 1; animation: streamMove 2s linear infinite; }
+@keyframes streamMove { 100% { transform: translateX(-50%); } }
+
+/* RGB GLITCH HOVER */
+.menuBtn:hover .nodeLabel::before, .menuBtn:hover .nodeLabel::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8; pointer-events: none; }
+.menuBtn:hover .nodeLabel::before { color: #ff0055; left: -2px; animation: textGlitch 0.2s infinite; }
+.menuBtn:hover .nodeLabel::after { color: #00d2ff; left: 2px; animation: textGlitch 0.3s infinite reverse; }
+
+/* Cyber Fill */
+.btnCyberFill { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,0.05), transparent); transform: translateX(-100%); transition: transform 0.4s ease; z-index: 1; pointer-events: none; }
+.menuBtn:hover .btnCyberFill { transform: translateX(0); }
+
+/* Main Hover State */
+.menuBtn:hover, .activeBtn { 
+  background: rgba(255,255,255,0.02); color: #fff; border-color: rgba(255,255,255,0.2); border-left: 6px solid var(--theme-color); 
+  transform: translateX(-30px) scale(1.05); padding-left: 40px; 
+  box-shadow: -20px 0 60px rgba(0,0,0,0.8), inset 0 0 20px rgba(var(--theme-color), 0.1); 
+}
+.activeBtn .nodeIcon, .menuBtn:hover .nodeIcon { background: var(--theme-color); color: #000; border-color: var(--theme-color); box-shadow: 0 0 30px var(--theme-color), 5px 5px 15px rgba(0,0,0,0.5); transform: scale(1.2) rotate(-5deg) translateZ(20px); }
+
+/* Danger Button Special Styling */
+.btnRed:hover, .btnRed.activeBtn { border-left-color: #ff0055; }
+.btnRed:hover .nodeIcon, .btnRed.activeBtn .nodeIcon { background: #ff0055; box-shadow: 0 0 30px #ff0055; border-color: #ff0055; }
+
+.externalNode { text-decoration: none; justify-content: space-between; }
+.extArrow { opacity: 0.3; transition: 0.3s; }
+.externalNode:hover .extArrow { opacity: 1; transform: translateX(10px) scale(1.2); color: #00d2ff; }
+
+/* RESPONSIVE */
+@media (max-width: 1200px) { .interfaceContainer { flex-direction: column; padding: 40px 20px; } .mainDisplay, .commandMenu { width: 100%; } .menuBtn:hover, .activeBtn { transform: translateX(0) scale(1.02); padding-left: 35px; } }
+@media (max-width: 600px) { .displayContent { padding: 35px; } .typewriterTitle { font-size: 2.2rem; } .menuBtn { padding: 15px 20px; font-size: 1rem; } .creatorBadge { display: none; } }

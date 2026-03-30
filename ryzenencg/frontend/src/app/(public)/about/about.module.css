@@ -1,0 +1,12 @@
+.pageArchitect {
+  position: relative; min-height: 100vh; background-color: #010103;
+  overflow-x: hidden;
+}
+
+/* L-Wrapper d l-Scroll Parallax */
+.parallaxWrapper {
+  position: relative; z-index: 10; width: 100%; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 150px; /* Espace ta7t l-Navbar */
+  transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoothness x9999 */
+}

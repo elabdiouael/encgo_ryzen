@@ -1,0 +1,43 @@
+.coreBg {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: #010103; overflow: hidden; z-index: 0;
+}
+
+.ambientLight {
+  position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+  width: 90vw; height: 70vh;
+  background: radial-gradient(ellipse, rgba(188, 19, 254, 0.1) 0%, rgba(0, 210, 255, 0.05) 40%, transparent 70%);
+  filter: blur(80px); animation: breatheLight 6s infinite alternate;
+}
+
+@keyframes breatheLight { 0% { opacity: 0.6; transform: translateX(-50%) scale(0.9); } 100% { opacity: 1; transform: translateX(-50%) scale(1.1); } }
+
+.gridPlane {
+  position: absolute; width: 200%; height: 200%; top: -50%; left: -50%;
+  background-image: 
+    linear-gradient(rgba(0, 210, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(188, 19, 254, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px; transform: rotateX(70deg) translateY(0);
+  animation: gridMove 15s linear infinite;
+}
+
+@keyframes gridMove { 100% { transform: rotateX(70deg) translateY(60px); } }
+
+/* ⭕ L-ANNEAUX ROTATIFS */
+.ringsContainer { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; perspective: 1000px; opacity: 0.3; }
+.ring1, .ring2, .ring3 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; border: 2px dashed #00d2ff; }
+.ring1 { animation: spin3D 20s linear infinite; }
+.ring2 { width: 80%; height: 80%; top: 10%; left: 10%; border: 1px solid #bc13fe; animation: spin3DRev 15s linear infinite; }
+.ring3 { width: 60%; height: 60%; top: 20%; left: 20%; border: 3px dotted rgba(255, 255, 255, 0.2); animation: spin3D 10s linear infinite; }
+
+@keyframes spin3D { 100% { transform: rotateX(60deg) rotateY(20deg) rotateZ(360deg); } }
+@keyframes spin3DRev { 100% { transform: rotateX(-40deg) rotateY(-20deg) rotateZ(-360deg); } }
+
+/* 🌧️ DATA STREAM */
+.dataStreams { position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; }
+.streamLine {
+  position: absolute; top: -100px; width: 1px; height: 100px;
+  background: linear-gradient(to bottom, transparent, #00d2ff, transparent);
+  opacity: 0.4; animation: rain linear infinite;
+}
+@keyframes rain { 100% { top: 100%; } }
