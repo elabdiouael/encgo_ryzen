@@ -1,18 +1,9 @@
-/* --- L-ESPACE 3D --- */
-.navbarWrapper {
-  position: fixed; top: 0; left: 0; width: 100%; height: 80px;
-  z-index: 1000; perspective: 2000px;
-}
-
 .fixedCenterWrapper {
   position: fixed; top: 20px; left: 0; width: 100vw;
   display: flex; justify-content: center; align-items: flex-start;
   z-index: 1000; pointer-events: none;
 }
 
-/* ----------------------------------------- */
-/* 1. INITIAL STATE (La Capsule)             */
-/* ----------------------------------------- */
 .navMorphContainer {
   position: relative; pointer-events: auto;
   width: 380px; height: 65px;
@@ -24,39 +15,8 @@
   overflow: hidden;
 }
 
-.borderPulse {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  border-radius: inherit; pointer-events: none;
-  box-shadow: inset 0 0 10px rgba(188, 19, 254, 0); transition: all 0.6s;
-}
-.navMorphContainer:hover .borderPulse {
-  box-shadow: inset 0 0 20px rgba(188, 19, 254, 0.3); animation: pulseNeon 2s infinite alternate;
-}
-@keyframes pulseNeon { 100% { box-shadow: inset 0 0 40px rgba(0, 210, 255, 0.4); } }
-
-/* --- LOGO SECTION --- */
-.logoSection { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 10; cursor: pointer; }
-.logoImageWrapper { position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; overflow: hidden; transition: all 0.5s; }
-.brandLogo { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.8)); transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
-.logoTextWrapper { display: flex; flex-direction: column; width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: all 0.5s; }
-
-/* --- LINKS --- */
-.linksSection { display: flex; align-items: center; gap: 10px; z-index: 10; transition: all 0.5s; }
-.cyberLink { display: flex; align-items: center; justify-content: center; color: #6a6a7a; text-decoration: none; position: relative; height: 100%; padding: 5px 0; transition: all 0.3s; }
-.linkIcon { transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
-.active .linkIcon { color: #00d2ff; filter: drop-shadow(0 0 5px #00d2ff); }
-.linkText { width: 0; opacity: 0; overflow: hidden; white-space: nowrap; font-family: monospace; font-size: 0.75rem; font-weight: bold; transition: all 0.4s ease; margin-left: 0; }
-.brackets { position: absolute; width: 100%; height: 100%; top: 0; left: 0; display: flex; justify-content: space-between; align-items: center; opacity: 0; pointer-events: none; color: #bc13fe; font-weight: bold; font-family: monospace; }
-.brLeft { transform: translateX(10px); transition: transform 0.3s; }
-.brRight { transform: translateX(-10px); transition: transform 0.3s; }
-.activeLine { position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: #00d2ff; box-shadow: 0 0 10px #00d2ff; transition: width 0.3s; }
-.active .activeLine { width: 80%; }
-.cyberLink:hover .activeLine { width: 100%; background: #bc13fe; box-shadow: 0 0 10px #bc13fe; }
-
-.actionSection { z-index: 10; display: flex; align-items: center; }
-
 /* ----------------------------------------- */
-/* 2. HOVER STATE DESKTOP (HUD DEPLOYED)     */
+/* 🛸 HOVER STATE: THE HUD EXPANSION         */
 /* ----------------------------------------- */
 :global(.nav-hovered) {
   width: 95vw; max-width: 1400px; height: 90px;
@@ -66,104 +26,66 @@
   clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
 }
 
-:global(.nav-hovered) .logoImageWrapper { width: 60px; height: 60px; background: rgba(0, 210, 255, 0.05); border-radius: 4px; border: 1px solid rgba(0, 210, 255, 0.2); }
-:global(.nav-hovered) .brandLogo { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.9)); }
-.logoScanline { position: absolute; top: -100%; left: 0; width: 100%; height: 20%; background: linear-gradient(180deg, transparent, rgba(0, 210, 255, 0.6), transparent); display: none; z-index: 5; pointer-events: none; }
-:global(.nav-hovered) .logoImageWrapper:hover .logoScanline { display: block; animation: scanLogo 2s linear infinite; }
-@keyframes scanLogo { 100% { top: 200%; } }
+.logoSection { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 10; }
 
-:global(.nav-hovered) .logoTextWrapper { width: 120px; opacity: 1; margin-left: 10px; }
-.logoTitle { color: #fff; font-weight: 900; letter-spacing: 2px; font-size: 1.1rem; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-.logoDetail { color: #00ffaa; font-family: monospace; font-size: 0.65rem; font-weight: bold; }
-
-:global(.nav-hovered) .linksSection { gap: 15px; } 
-:global(.nav-hovered) .linkText { width: auto; opacity: 1; margin-left: 6px; }
-:global(.nav-hovered) .cyberLink:hover .linkText { color: #fff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); }
-:global(.nav-hovered) .cyberLink:hover .linkIcon { color: #00d2ff; transform: scale(1.1); }
-:global(.nav-hovered) .cyberLink:hover .brackets { opacity: 1; }
-:global(.nav-hovered) .cyberLink:hover .brLeft { transform: translateX(-6px); }
-:global(.nav-hovered) .cyberLink:hover .brRight { transform: translateX(6px); }
-:global(.nav-hovered) .cyberLink:hover .linkText::before { content: attr(data-glitch); position: absolute; top: 0; left: 0; color: #bc13fe; overflow: hidden; animation: noise 0.2s infinite linear alternate-reverse; }
-@keyframes noise { 0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); } 100% { clip-path: inset(50% 0 30% 0); transform: translate(2px, -1px); } }
-
-/* ----------------------------------------- */
-/* 📱 3. MOBILE RESPONSIVE (SLIDE DOWN FIX)  */
-/* ----------------------------------------- */
-.mobileToggle { display: none; }
-.mobileNav { display: none; }
-
-@media (max-width: 900px) {
-  .fixedCenterWrapper { 
-    top: 0; padding: 0; 
-    pointer-events: auto; /* Mhimma bach l-navbar l-fouqaniya t-cliqua */
-  }
-  
-  /* L-Capsule d l-Navbar k-t-weli 100% l-Fou9 */
-  :global(.navMorphContainer), .navMorphContainer { 
-    width: 100vw !important; max-width: 100vw !important; 
-    height: 70px !important; 
-    border-radius: 0 !important; 
-    border: none !important; border-bottom: 2px solid #00d2ff !important;
-    background: rgba(5, 5, 12, 0.98) !important;
-    justify-content: space-between !important;
-    padding: 0 20px !important;
-    clip-path: none !important; box-shadow: 0 5px 20px rgba(0,0,0,0.8) !important;
-    transform: none !important; animation: none !important;
-    z-index: 1000;
-  }
-  
-  /* N-khebiw l-Vibe d l-PC */
-  .linksSection, .actionSection, :global(.nav-hovered) .linksSection, :global(.nav-hovered) .actionSection { 
-    display: none !important; 
-  }
-  
-  .logoTextWrapper { display: flex !important; opacity: 1 !important; width: auto !important; margin-left: 10px; }
-  .logoTitle { font-size: 1.1rem; }
-  .logoDetail { display: none; }
-  
-  /* L-Bouton d l-Hamburger */
-  .mobileToggle { 
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(0, 210, 255, 0.1); 
-    border: 1px solid #00d2ff; border-radius: 8px; cursor: pointer; 
-    padding: 6px; color: #00d2ff; pointer-events: auto;
-  }
-  
-  /* 💥 L-MENU LI K-IY-HBET L-TE7T (SLIDE DOWN) */
-  .mobileNav {
-    display: flex; flex-direction: column; gap: 5px;
-    position: fixed; top: 70px; left: 0; 
-    width: 100vw; padding: 20px; 
-    background: rgba(5, 5, 12, 0.95); backdrop-filter: blur(20px); 
-    border-bottom: 2px solid #00d2ff; 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.9); z-index: 990;
-    pointer-events: auto;
-    
-    /* Animation Slide Down */
-    transform: translateY(-150%);
-    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-  }
-  
-  /* Mnin k-t-weli true, k-t-hbet l-0 */
-  .mobileNavOpen {
-    transform: translateY(0);
-  }
-  
-  .mobileNavLink { 
-    display: flex; align-items: center; gap: 15px;
-    color: #a0a0b0; text-decoration: none; padding: 15px; 
-    border-bottom: 1px solid rgba(255,255,255,0.05); 
-    font-family: monospace; font-weight: bold; font-size: 1.1rem;
-    transition: 0.3s;
-  }
-  .mobIcon { color: #bc13fe; }
-  .mobileNavLink:hover { color: #fff; background: rgba(0, 210, 255, 0.1); padding-left: 20px; border-left: 3px solid #00d2ff; }
-  .mobileNavLink:hover .mobIcon { color: #00d2ff; }
-
-  .mobileCyberBtn { 
-    margin-top: 15px; color: #000; background: #00d2ff;
-    padding: 15px; text-align: center; text-decoration: none; 
-    font-family: monospace; font-weight: 900; border-radius: 8px; 
-    box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
-  }
+.logoImageWrapper {
+  position: relative; width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 8px; overflow: hidden; transition: all 0.5s;
 }
+
+.brandLogo {
+  width: 100%; height: 100%; object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.8));
+  transition: all 0.5s;
+}
+
+:global(.nav-hovered) .logoImageWrapper { width: 60px; height: 60px; background: rgba(0, 210, 255, 0.05); border: 1px solid rgba(0, 210, 255, 0.2); }
+:global(.nav-hovered) .brandLogo { transform: scale(1.1); }
+
+.logoTextWrapper { display: flex; flex-direction: column; width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: all 0.5s; }
+:global(.nav-hovered) .logoTextWrapper { width: 150px; opacity: 1; margin-left: 10px; }
+
+.logoTitle { color: #fff; font-weight: 900; letter-spacing: 2px; font-size: 1.1rem; }
+.logoDetail { color: #00ffaa; font-family: monospace; font-size: 0.65rem; }
+
+/* --- LINKS --- */
+.linksSection { display: flex; align-items: center; gap: 10px; z-index: 10; transition: all 0.5s; }
+:global(.nav-hovered) .linksSection { gap: 20px; }
+
+.cyberLink { display: flex; align-items: center; color: #6a6a7a; text-decoration: none; position: relative; transition: all 0.3s; }
+.linkText { width: 0; opacity: 0; overflow: hidden; white-space: nowrap; font-family: monospace; font-size: 0.8rem; font-weight: bold; transition: all 0.4s; }
+:global(.nav-hovered) .linkText { width: auto; opacity: 1; margin-left: 8px; }
+
+.linkIcon { display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.cyberLink:hover .linkIcon, .active .linkIcon { color: #00d2ff; filter: drop-shadow(0 0 8px #00d2ff); }
+
+.brackets { position: absolute; width: 110%; height: 100%; top: 0; left: -5%; display: flex; justify-content: space-between; align-items: center; opacity: 0; pointer-events: none; color: #bc13fe; }
+.cyberLink:hover .brackets { opacity: 1; }
+
+.activeLine { position: absolute; bottom: -10px; left: 0; width: 0; height: 2px; background: #00d2ff; transition: width 0.3s; }
+.active .activeLine { width: 100%; }
+
+/* --- BUTTONS & PULSE --- */
+.actionSection { z-index: 10; }
+.borderPulse { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit; pointer-events: none; transition: all 0.6s; }
+.navMorphContainer:hover .borderPulse { box-shadow: inset 0 0 30px rgba(0, 210, 255, 0.3); animation: pulseNeon 2s infinite alternate; }
+
+@keyframes pulseNeon { 100% { box-shadow: inset 0 0 50px rgba(188, 19, 254, 0.4); } }
+
+/* --- MOBILE --- */
+.mobileToggle { display: none; }
+@media (max-width: 900px) {
+  .navMorphContainer { width: 90vw; }
+  .linksSection, .actionSection { display: none; }
+  .mobileToggle { display: block; background: none; border: none; z-index: 100; cursor: pointer; }
+}
+
+.mobileNav {
+  position: fixed; top: -100%; left: 0; width: 100%; height: 100vh;
+  background: rgba(2, 2, 5, 0.98); z-index: 900; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 30px; transition: all 0.5s;
+}
+.mobileNavOpen { top: 0; }
+.mobileNavLink { color: #fff; font-size: 1.5rem; text-decoration: none; font-weight: 800; letter-spacing: 2px; }
+.mobileCyberBtn { border: 1px solid #00d2ff; color: #00d2ff; padding: 15px 30px; text-decoration: none; font-weight: bold; }
