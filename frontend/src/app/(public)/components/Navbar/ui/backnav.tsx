@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './NavBackground.module.css';
 
-export default function NavBg() {
+export default function backnav() {
   return (
     <div className={styles.bgContainer}>
       <div className={styles.matrixGrid}></div>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, Info, HelpCircle, Database, Handshake, Mail, Users, Menu, X, Terminal, ShieldAlert } from 'lucide-react';
 
-import NavBackground from './ui/NavBg';
+import NavBackground from './ui/backnav';
 import InscriptionBtn from './ui/InscriptionBtn';
 import styles from './Navbar.module.css';
 
