@@ -70,6 +70,9 @@ export interface DashboardStats {
   totalEquipes: number;
   totalParticipants: number;
   projetsSoumis: number;
+  totalSponsors: number;   // 🔥 ADDED
+  totalMessages: number;   // 🔥 ADDED
+  totalArchives: number;   // 🔥 ADDED
   serverStatus: string;
 }
 

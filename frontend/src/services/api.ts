@@ -118,16 +118,18 @@ export const apiService = {
     return response.text();
   },
 
-  getStats: async (): Promise<DashboardStats> => {
+getStats: async (): Promise<DashboardStats> => {
     try {
       const response = await fetch(`${API_BASE_URL}/stats`, { cache: 'no-store' });
       if (!response.ok) throw new Error('Erreur fetch stats');
       return await response.json();
     } catch (error) {
+      // 🔥 THE FIX: Rjja3 les mêmes noms li k-y-9elleb 3lihom l-Dashboard
       return {
-        totalEquipes: 42,
-        totalParticipants: 186,
-        projetsSoumis: 15,
+        totalEquipes: 0,
+        totalSponsors: 0,
+        totalMessages: 0,
+        totalArchives: 0,
         serverStatus: "OFFLINE"
       };
     }
