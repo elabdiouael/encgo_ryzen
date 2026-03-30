@@ -6,38 +6,35 @@ import { apiService } from '@/services/api';
 import styles from './dashboard.module.css';
 
 export default function AdminDashboard() {
-  // Kan-jibou les données mn API Service bach n-7esbo l-Stats
   const [stats, setStats] = useState({
-    equipes: 0,
-    sponsors: 0,
-    messages: 0,
-    archives: 0
+    totalEquipes: 0,
+    totalSponsors: 0,
+    totalMessages: 0,
+    totalArchives: 0,
+    serverStatus: "CONNECTING..."
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAllData = async () => {
+    const fetchStats = async () => {
       try {
-        const [equipes, sponsors, messages, archives] = await Promise.all([
-          apiService.getEquipes(),
-          apiService.getSponsors(),
-          apiService.getMessages(),
-          apiService.getArchives()
-        ]);
-        
+        // 🚀 HNA KAN-JIBOU LES STATS DIRECT MN SPRING BOOT (ENDPOINT J-JDID)
+        const data = await apiService.getStats();
         setStats({
-          equipes: equipes.length,
-          sponsors: sponsors.length,
-          messages: messages.length,
-          archives: archives.length
+          totalEquipes: data.totalEquipes || 0,
+          totalSponsors: data.totalSponsors || 0,
+          totalMessages: data.totalMessages || 0,
+          totalArchives: data.totalArchives || 0,
+          serverStatus: data.serverStatus || "ONLINE"
         });
       } catch (error) {
         console.error("Erreur de connexion au Core");
+        setStats(prev => ({ ...prev, serverStatus: "OFFLINE" }));
       }
       setLoading(false);
     };
 
-    fetchAllData();
+    fetchStats();
   }, []);
 
   return (
@@ -51,9 +48,14 @@ export default function AdminDashboard() {
       </div>
 
       <div className={styles.serverStatus}>
-        <Activity size={18} className={styles.statusIcon} />
+        <Activity size={18} className={styles.statusIcon} style={{ color: stats.serverStatus === "OFFLINE" ? "#ff0055" : "" }} />
         <span>ÉTAT DU SERVEUR : </span>
-        <span className={styles.statusOnline}>EN LIGNE ET SÉCURISÉ</span>
+        <span 
+          className={styles.statusOnline} 
+          style={{ color: stats.serverStatus === "OFFLINE" ? "#ff0055" : "", textShadow: stats.serverStatus === "OFFLINE" ? "0 0 10px #ff0055" : "" }}
+        >
+          {stats.serverStatus}
+        </span>
       </div>
 
       {loading ? (
@@ -68,7 +70,7 @@ export default function AdminDashboard() {
               <div className={styles.iconBox1}><Users size={24} /></div>
               <div className={styles.statInfo}>
                 <h3>UNITÉS DÉPLOYÉES</h3>
-                <p className={styles.statNumber}>{stats.equipes}</p>
+                <p className={styles.statNumber}>{stats.totalEquipes}</p>
                 <span className={styles.statLabel}>Équipes inscrites</span>
               </div>
             </div>
@@ -81,7 +83,7 @@ export default function AdminDashboard() {
               <div className={styles.iconBox2}><Handshake size={24} /></div>
               <div className={styles.statInfo}>
                 <h3>PARTENARIATS</h3>
-                <p className={styles.statNumber}>{stats.sponsors}</p>
+                <p className={styles.statNumber}>{stats.totalSponsors}</p>
                 <span className={styles.statLabel}>Demandes B2B</span>
               </div>
             </div>
@@ -94,7 +96,7 @@ export default function AdminDashboard() {
               <div className={styles.iconBox3}><Mail size={24} /></div>
               <div className={styles.statInfo}>
                 <h3>COMMUNICATIONS</h3>
-                <p className={styles.statNumber}>{stats.messages}</p>
+                <p className={styles.statNumber}>{stats.totalMessages}</p>
                 <span className={styles.statLabel}>Requêtes reçues</span>
               </div>
             </div>
@@ -107,7 +109,7 @@ export default function AdminDashboard() {
               <div className={styles.iconBox4}><Server size={24} /></div>
               <div className={styles.statInfo}>
                 <h3>DATA_CORE DB</h3>
-                <p className={styles.statNumber}>{stats.archives}</p>
+                <p className={styles.statNumber}>{stats.totalArchives}</p>
                 <span className={styles.statLabel}>Slots d'archives injectés</span>
               </div>
             </div>

@@ -85,8 +85,7 @@ export default function AboutCore() {
           ORIENTAL_HACK <span className={styles.v2}>2.0</span>
         </h1>
         <h2 className={styles.subTitle}>
-          Intelligence Artificielle & Innovation au service de la performance et de la compétitivité 
-          des entreprises et de l’économie sociale et solidaire.
+          Intelligence Artificielle & Innovation au service de la performance et de la compétiti des entreprises et des organisations de l'économie sociale et solidaire.
         </h2>
         
         <div className={styles.divider}></div>

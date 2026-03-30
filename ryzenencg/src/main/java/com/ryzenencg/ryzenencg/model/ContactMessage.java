@@ -1,11 +1,11 @@
 package com.ryzenencg.ryzenencg.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-// 🔥 L-FIX HOWA HADA: Beddelna smit l-Table bach n-bdaw page jdida f MySQL bla machakil
 @Table(name = "contact_hq_messages")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class ContactMessage {
@@ -21,7 +21,9 @@ public class ContactMessage {
     @Column(columnDefinition = "TEXT")
     private String message;
 
+    // 🔥 THE FIX: Bach React y-fhem bli l-message m-jawb w y-3tih l-Badge l-Khder!
     @Builder.Default
+    @JsonProperty("isReplied")
     private Boolean replied = false;
 
     @Column(columnDefinition = "TEXT")

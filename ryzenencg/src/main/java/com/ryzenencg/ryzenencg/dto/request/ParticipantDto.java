@@ -1,6 +1,5 @@
 package com.ryzenencg.ryzenencg.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -9,7 +8,6 @@ import lombok.Data;
 @Data
 public class ParticipantDto {
 
-    @JsonProperty("nom")
     @NotBlank(message = "Le nom complet est requis")
     private String nomComplet;
 

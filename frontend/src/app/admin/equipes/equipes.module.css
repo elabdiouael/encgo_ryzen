@@ -1,154 +1,111 @@
 .pageWrapper {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  animation: fadeIn 0.5s ease-out;
+  padding: 40px;
+  min-height: 100vh;
+  background: #020205;
+  color: #e0e0f0;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* ========================================= */
+/* 🚀 HEADER & SYNC BUTTON                   */
+/* ========================================= */
 .headerSection {
-  margin-bottom: 40px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 20px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 40px; border-bottom: 1px solid rgba(0, 210, 255, 0.2); padding-bottom: 20px;
 }
 
-.glitchTitle {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: 3px;
-  position: relative;
+.titleContainer { display: flex; align-items: center; gap: 20px; }
+.pulseIcon { color: #00d2ff; animation: pulse 2s infinite alternate; filter: drop-shadow(0 0 10px #00d2ff); }
+
+.megaTitle {
+  font-size: 2.5rem; font-weight: 900; color: #fff; margin: 0 0 5px;
+  font-family: monospace; letter-spacing: 2px; position: relative;
+  text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+}
+.subtitle { color: #8a8a9a; font-size: 1rem; font-family: monospace; letter-spacing: 1px; margin: 0; }
+
+.syncBtn {
+  display: flex; align-items: center; gap: 10px; background: rgba(0, 210, 255, 0.1);
+  border: 1px solid #00d2ff; color: #00d2ff; padding: 12px 25px; border-radius: 4px;
+  font-family: monospace; font-weight: bold; cursor: pointer; transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+.syncBtn:hover:not(:disabled) { background: #00d2ff; color: #000; box-shadow: 0 0 30px #00d2ff; }
+.syncBtn:disabled { opacity: 0.5; cursor: not-allowed; border-color: #555; color: #555; }
+.spin { animation: spin 1s linear infinite; }
+
+/* ========================================= */
+/* 🚨 ERRORS & LOADERS                       */
+/* ========================================= */
+.errorBox {
+  background: rgba(255, 0, 85, 0.1); border-left: 4px solid #ff0055; color: #ff0055;
+  padding: 20px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px;
+  font-family: monospace; font-size: 1.1rem; border-radius: 0 8px 8px 0;
 }
 
-.glitchTitle::before {
-  content: attr(data-text);
-  position: absolute;
-  left: 2px;
-  text-shadow: -2px 0 #00d2ff;
-  clip: rect(24px, 550px, 90px, 0);
-  animation: glitch-anim2 2s infinite linear alternate-reverse;
+.loaderZone, .emptyState {
+  height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(10, 10, 15, 0.5); border: 1px dashed rgba(0, 210, 255, 0.3); border-radius: 12px;
+  color: #00d2ff; font-family: monospace; font-size: 1.2rem; font-weight: bold; letter-spacing: 2px;
+}
+.loaderIcon { animation: spin 2s linear infinite; margin-bottom: 20px; filter: drop-shadow(0 0 15px #00d2ff); }
+.hologram { opacity: 0.5; text-align: center; animation: float 3s infinite alternate ease-in-out; }
+
+/* ========================================= */
+/* 🖥️ CYBER TABLE DESIGN X100                */
+/* ========================================= */
+.tableWrapper {
+  width: 100%; overflow-x: auto; background: rgba(5, 5, 10, 0.6); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
 }
 
-.subtitle {
-  color: #a0a0b0;
-  font-family: monospace;
-  font-size: 1rem;
-  margin-top: 10px;
-  letter-spacing: 1px;
-}
-
-/* 🧊 CONTAINER DYAL L-TABLEAU (Glassmorphism) */
-.tableContainer {
-  background: rgba(10, 10, 15, 0.6);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 210, 255, 0.2);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  overflow-x: auto; /* Bach y-scrolla f l-ecran sghir */
-}
-
-/* 📊 L-TABLEAU L-MEJNOUN */
-.cyberTable {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-}
+.cyberTable { width: 100%; border-collapse: collapse; text-align: left; }
 
 .cyberTable th {
-  padding: 15px 20px;
-  color: #00d2ff;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(0, 210, 255, 0.3);
-  white-space: nowrap;
+  background: linear-gradient(90deg, rgba(0, 210, 255, 0.1), rgba(188, 19, 254, 0.05));
+  color: #a0a0b0; padding: 20px; font-family: monospace; font-size: 0.9rem;
+  letter-spacing: 2px; border-bottom: 2px solid rgba(0, 210, 255, 0.3);
 }
 
-.cyberTable td {
-  padding: 18px 20px;
-  color: #d1d1d1;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  vertical-align: middle;
-  font-size: 0.95rem;
-}
-
-.cyberTable tbody tr {
+.tableRow {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
   transition: all 0.3s ease;
 }
-
-/* L-Hover 3la les lignes d l-tableau */
-.rowValid:hover {
-  background: rgba(0, 255, 170, 0.05);
-  box-shadow: inset 3px 0 0 #00ffaa;
+.tableRow:hover {
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: inset 4px 0 0 #00d2ff;
 }
 
-.rowInvalid:hover {
-  background: rgba(255, 0, 85, 0.05);
-  box-shadow: inset 3px 0 0 #ff0055;
-}
+.cyberTable td { padding: 20px; vertical-align: middle; }
 
-.teamName {
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: 1px;
-}
+.cellId { color: #555566; font-family: monospace; font-weight: bold; }
+.cellName { color: #fff; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; }
+.cellCity { color: #8a8a9a; font-family: monospace; }
+.cellDate { color: #8a8a9a; font-family: monospace; }
 
-/* 🏷️ LES BADGES DYAL L-STATUT */
-.statusValid {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(0, 255, 170, 0.1);
-  color: #00ffaa;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  border: 1px solid rgba(0, 255, 170, 0.3);
-}
+/* Effectif Bar */
+.cellMembers { display: flex; align-items: center; gap: 15px; font-family: monospace; font-weight: bold; }
+.memberBar { width: 60px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+.memberFill { height: 100%; transition: width 0.5s ease; }
 
-.statusInvalid {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 0, 85, 0.1);
-  color: #ff0055;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  border: 1px solid rgba(255, 0, 85, 0.3);
+/* Badges */
+.badgeValid, .badgeInvalid {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px;
+  border-radius: 4px; font-family: monospace; font-size: 0.8rem; font-weight: bold;
 }
+.badgeValid { background: rgba(0, 255, 170, 0.1); border: 1px solid #00ffaa; color: #00ffaa; box-shadow: 0 0 10px rgba(0, 255, 170, 0.2); }
+.badgeInvalid { background: rgba(255, 0, 85, 0.1); border: 1px solid #ff0055; color: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.2); }
 
-/* 👁️ L-BOUTON DYAL L-3IN */
+/* Bouton HUD */
 .actionBtn {
-  background: rgba(0, 210, 255, 0.05);
-  border: 1px solid rgba(0, 210, 255, 0.3);
-  color: #00d2ff;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+  background: rgba(0, 210, 255, 0.05); border: 1px solid rgba(0, 210, 255, 0.3);
+  color: #00d2ff; padding: 10px; border-radius: 8px; cursor: pointer;
+  transition: all 0.3s; display: flex; align-items: center; justify-content: center;
 }
+.actionBtn:hover { background: #00d2ff; color: #000; box-shadow: 0 0 15px #00d2ff; transform: scale(1.1); }
 
-.actionBtn:hover {
-  background: #00d2ff;
-  color: #000;
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
-  transform: scale(1.15) rotate(5deg);
-}
-
-.loader, .emptyState {
-  text-align: center;
-  padding: 50px;
-  color: #8a8a9a;
-  font-family: monospace;
-  font-size: 1.1rem;
-}
-
-@keyframes glitch-anim2 { 0% { clip: rect(15px, 9999px, 100px, 0); } 100% { clip: rect(80px, 9999px, 30px, 0); } }
-@keyframes fadeIn { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+/* Animations */
+@keyframes pulse { 100% { opacity: 0.5; filter: drop-shadow(0 0 20px #00d2ff); } }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes float { 100% { transform: translateY(-10px); } }

@@ -58,7 +58,6 @@
   position: relative; overflow: hidden;
 }
 
-/* L-Laser Scanli li k-y-doz mnin t-beddel l-Etape */
 .stepContentZone::before {
   content: ''; position: absolute; top: -100%; left: 0; width: 100%; height: 3px;
   background: #bc13fe; box-shadow: 0 0 20px #bc13fe, 0 0 40px #bc13fe;
@@ -66,9 +65,16 @@
 }
 @keyframes scanLaser { 100% { top: 200%; } }
 
+/* ========================================== */
+/* 📱 MOBILE RESPONSIVE FIX                   */
+/* ========================================== */
 @media (max-width: 768px) {
-  .hudProgress { padding: 20px; }
-  .progressLineBg { left: 40px; right: 40px; }
+  .hudProgress { padding: 20px 15px; }
+  .progressLineBg { left: 25px; right: 25px; top: 35px; } /* M-rigla m3a downa sghira */
+  .stepIndicator { width: auto; flex: 1; }
+  .stepIconBox { width: 32px; height: 32px; } /* Ssgharna dowarate */
+  .active .stepIconBox { transform: scale(1.1); }
   .stepTitle { display: none; } /* K-n-khebiw l-Title f l-tel bach ma-y-tza7mch */
-  .stepContentZone { padding: 25px 20px; }
+  .stepPhase { font-size: 0.6rem; letter-spacing: 0px; }
+  .stepContentZone { padding: 20px 15px; } /* Padding khfiiiif f l-Box lkbir */
 }

@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,13 +30,18 @@ public class InscriptionServiceImpl implements IInscriptionService {
             throw new RuntimeException("Ce nom d'équipe est déjà pris !");
         }
 
+        // 💥 THE BYPASS: N-jem3ou les competences f String wa7ed b l-fassila
+        String competencesJoined = (request.getCompetencesEquipe() != null && !request.getCompetencesEquipe().isEmpty())
+                ? String.join(", ", request.getCompetencesEquipe())
+                : "Non Spécifié";
+
         Equipe equipe = Equipe.builder()
                 .nomEquipe(request.getNomEquipe())
                 .region(request.getRegion())
                 .ville(request.getVille())
                 .experienceHackathon(request.getExperienceHackathon())
                 .detailsExperience(request.getDetailsExperience())
-                .competencesEquipe(request.getCompetencesEquipe())
+                .competencesEquipe(competencesJoined) // 🔥 HNA DKHLET STRING
                 .motivation(request.getMotivation())
                 .comprehensionTheme(request.getComprehensionTheme())
                 .aUneIdee(request.isAUneIdee())
@@ -53,7 +59,7 @@ public class InscriptionServiceImpl implements IInscriptionService {
                     .email(dto.getEmail())
                     .telephone(dto.getTelephone())
                     .etablissement(dto.getEtablissement())
-                    .niveauEtude(dto.getNiveauEtude()) // 🔥 Jdid
+                    .niveauEtude(dto.getNiveauEtude())
                     .role(dto.getRole() != null ? dto.getRole() : "MEMBRE")
                     .build();
             equipe.addParticipant(p);
@@ -85,6 +91,11 @@ public class InscriptionServiceImpl implements IInscriptionService {
                 return dto;
             }).collect(Collectors.toList());
 
+            // 💥 THE BYPASS: N-reg3ou l-String l-List d les Strings bach l-Frontend ma-y-3i9ch
+            List<String> competencesList = equipe.getCompetencesEquipe() != null
+                    ? Arrays.asList(equipe.getCompetencesEquipe().split(", "))
+                    : Arrays.asList("Non Spécifié");
+
             return EquipeResponse.builder()
                     .id(equipe.getId())
                     .nomEquipe(equipe.getNomEquipe())
@@ -92,7 +103,7 @@ public class InscriptionServiceImpl implements IInscriptionService {
                     .ville(equipe.getVille())
                     .experienceHackathon(equipe.getExperienceHackathon())
                     .detailsExperience(equipe.getDetailsExperience())
-                    .competencesEquipe(equipe.getCompetencesEquipe())
+                    .competencesEquipe(competencesList) // 🔥 HNA RJE3 LIST
                     .motivation(equipe.getMotivation())
                     .comprehensionTheme(equipe.getComprehensionTheme())
                     .aUneIdee(equipe.isAUneIdee())

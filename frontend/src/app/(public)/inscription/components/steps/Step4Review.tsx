@@ -6,7 +6,8 @@ import CyberInput from '../ui/CyberInput';
 import CyberSelect from '../ui/CyberSelect';
 import styles from './Steps.module.css';
 import { InscriptionFormData } from '../RegistrationStepper';
-// import { apiService } from '@/services/api'; // 🔥 L-API D BESSA7
+// 🔥 THE FIX: 7iydna les commentaires, daba l-API m-connectya d bessa7!
+import { apiService } from '@/services/api'; 
 
 interface StepProps {
   data: InscriptionFormData;
@@ -20,7 +21,6 @@ export default function Step4Review({ data, updateData, onPrev }: StepProps) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
 
-  // 🔥 FIX: LOCAL STATE
   const [localData, setLocalData] = useState({
     aUneIdee: data.aUneIdee,
     titreProjet: data.titreProjet,
@@ -43,10 +43,16 @@ export default function Step4Review({ data, updateData, onPrev }: StepProps) {
     const finalDataToSubmit = { ...data, ...localData }; // N-jm3o kolchi
 
     try {
-      // await apiService.inscrireEquipe(finalDataToSubmit); 
-      setTimeout(() => setStatus('success'), 2500);
+      console.log("🚀 Lancement de l'Uplink vers le Core...");
+      
+      // 💥 THE FIX: 7iydna l-setTimeout w rbe6na l-Data m3a Spring Boot nichan!
+      await apiService.inscrireEquipe(finalDataToSubmit); 
+      
+      setStatus('success');
     } catch (err: any) {
-      setStatus('error'); setErrorMsg(err.message || "Erreur de connexion au Core System.");
+      console.error("❌ ERREUR API :", err);
+      setStatus('error'); 
+      setErrorMsg(err.message || "Erreur de connexion au Core System.");
     }
   };
 
@@ -58,7 +64,7 @@ export default function Step4Review({ data, updateData, onPrev }: StepProps) {
         <CheckCircle size={80} color="var(--theme-color)" className={styles.successPop} />
         <h2 className={styles.successTitle}>SYSTÈME OVERRIDE : SUCCÈS</h2>
         <p className={styles.successDesc}>La squad <strong>{data.nomEquipe}</strong> a été enregistrée dans la base de données principale.</p>
-        <button onClick={() => window.location.reload()} className={styles.btnReboot}>NOUVELLE SÉQUENCE</button>
+        <button onClick={() => window.location.href = '/home'} className={styles.btnReboot}>RETOURNER À L'ACCUEIL</button>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 /* 💥 THE 120 FPS SOLID CYBER CARD WITH HUD CROSSHAIRS */
 .stepContainer { 
-  background: #060609; /* Deep Solid Black/Blue = 0 Lag */
+  background: #060609; 
   border: 1px solid rgba(255, 255, 255, 0.05); 
   padding: 45px 50px; 
   box-shadow: 0 30px 80px rgba(0,0,0,0.95);
@@ -9,7 +9,7 @@
   will-change: transform, opacity; transform: translateZ(0);
 }
 
-/* 🎯 HUD CORNER CROSSHAIRS (L-Zwa9 d 3026) */
+/* 🎯 HUD CORNER CROSSHAIRS */
 .stepContainer::before, .stepContainer::after {
   content: ''; position: absolute; width: 30px; height: 30px; border: 2px solid var(--theme-color); pointer-events: none; opacity: 0.8; transition: all 0.5s ease;
 }
@@ -21,7 +21,6 @@
 /* HEADER TITLE GLITCH */
 .stepHeader { margin-bottom: 35px; border-bottom: 1px solid rgba(var(--theme-color-rgb), 0.2); padding-bottom: 20px; position: relative; }
 .stepTitle { color: #fff; font-family: monospace; font-size: 2.2rem; font-weight: 900; letter-spacing: 3px; display: flex; align-items: center; gap: 15px; margin-bottom: 10px; text-transform: uppercase; }
-/* Little flashing cursor next to title */
 .stepTitle::after { content: '_'; color: var(--theme-color); animation: blink 1s step-end infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 
@@ -30,7 +29,6 @@
 /* GRIDS */
 .formGridFast { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
 .fullWidth { grid-column: 1 / -1; }
-@media (max-width: 900px) { .formGridFast { grid-template-columns: 1fr; } }
 
 /* ERROR BOX */
 .errorBox { background: rgba(255, 0, 85, 0.05); border-left: 4px solid #ff0055; color: #ff0055; padding: 18px 20px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; font-weight: bold; font-family: monospace; font-size: 1.05rem; animation: shakeX 0.4s; }
@@ -44,7 +42,7 @@
 
 /* NAVIGATION BUTTONS */
 .stepActions { display: flex; justify-content: space-between; margin-top: 50px; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.05); }
-.btnPrev, .btnNext { display: flex; align-items: center; gap: 12px; padding: 16px 35px; font-family: monospace; font-weight: 900; font-size: 1.15rem; cursor: pointer; transition: 0.2s; letter-spacing: 1px; }
+.btnPrev, .btnNext { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 35px; font-family: monospace; font-weight: 900; font-size: 1.15rem; cursor: pointer; transition: 0.2s; letter-spacing: 1px; }
 .btnPrev { background: transparent; border: 1px solid rgba(255,255,255,0.1); color: #8a8a9a; border-radius: 4px; }
 .btnPrev:hover { background: rgba(255,255,255,0.05); color: #fff; }
 .btnNext { background: var(--theme-color); border: 1px solid var(--theme-color); color: #000; border-radius: 4px; box-shadow: 0 0 20px rgba(var(--theme-color-rgb), 0.3); }
@@ -54,7 +52,6 @@
 /* ETAPE 3 SQUAD UI                           */
 /* ========================================== */
 .squadLayout { display: flex; gap: 40px; margin-top: 30px; align-items: flex-start; }
-@media (max-width: 900px) { .squadLayout { flex-direction: column; } }
 
 .opTabs { display: flex; flex-direction: column; gap: 10px; width: 240px; flex-shrink: 0; }
 .opTabBtn { display: flex; align-items: center; gap: 15px; background: #0a0a0f; border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 4px; cursor: pointer; transition: 0.2s; text-align: left; position: relative; overflow: hidden; }
@@ -85,7 +82,7 @@
 .projectToggleZone { background: #0a0a0f; border: 1px solid rgba(var(--theme-color-rgb), 0.2); padding: 35px; border-radius: 8px; text-align: center; position: relative; }
 .toggleLabel { color: #fff; font-family: monospace; font-size: 1.3rem; margin-bottom: 25px; letter-spacing: 2px; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
 .toggleBtns { display: flex; justify-content: center; gap: 20px; }
-.toggleBtn { background: #060609; border: 1px solid rgba(255,255,255,0.1); color: #8a8a9a; padding: 16px 35px; font-family: monospace; font-weight: bold; font-size: 1.05rem; border-radius: 4px; cursor: pointer; transition: 0.2s; }
+.toggleBtn { background: #060609; border: 1px solid rgba(255,255,255,0.1); color: #8a8a9a; padding: 16px 35px; font-family: monospace; font-weight: bold; font-size: 1.05rem; border-radius: 4px; cursor: pointer; transition: 0.2s; flex: 1; display: flex; align-items: center; justify-content: center;}
 .toggleBtn:hover { border-color: #fff; color: #fff; }
 .toggleActiveYes { background: rgba(var(--theme-color-rgb), 0.1); border-color: var(--theme-color); color: var(--theme-color); box-shadow: inset 0 0 20px rgba(var(--theme-color-rgb), 0.2); }
 .toggleActiveNo { background: rgba(255, 0, 85, 0.1); border-color: #ff0055; color: #ff0055; box-shadow: inset 0 0 20px rgba(255, 0, 85, 0.2); }
@@ -93,7 +90,7 @@
 .projectInputsZone { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease; }
 .zoneOpen { max-height: 2500px; opacity: 1; margin-top: 30px; }
 
-.btnSubmitFinal { background: var(--theme-color); border: 1px solid var(--theme-color); color: #000; display: flex; align-items: center; gap: 12px; padding: 18px 45px; border-radius: 4px; font-family: monospace; font-weight: 900; font-size: 1.2rem; cursor: pointer; transition: 0.2s; box-shadow: 0 0 30px rgba(var(--theme-color-rgb), 0.4); }
+.btnSubmitFinal { background: var(--theme-color); border: 1px solid var(--theme-color); color: #000; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 45px; border-radius: 4px; font-family: monospace; font-weight: 900; font-size: 1.2rem; cursor: pointer; transition: 0.2s; box-shadow: 0 0 30px rgba(var(--theme-color-rgb), 0.4); }
 .btnSubmitFinal:hover:not(:disabled) { background: transparent; color: var(--theme-color); box-shadow: inset 0 0 20px rgba(var(--theme-color-rgb), 0.2), 0 0 40px rgba(var(--theme-color-rgb), 0.6); transform: translateY(-2px); }
 .btnLoading { background: transparent; color: var(--theme-color); border-color: var(--theme-color); cursor: wait; }
 .scanIcon { animation: scanFinger 1.5s infinite alternate; }
@@ -106,3 +103,63 @@
 .successDesc { color: #8a8a9a; font-size: 1.2rem; margin-bottom: 40px; font-family: monospace; }
 .btnReboot { background: transparent; border: 1px solid var(--theme-color); color: var(--theme-color); padding: 15px 35px; font-family: monospace; font-size: 1.1rem; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.2s; }
 .btnReboot:hover { background: rgba(var(--theme-color-rgb), 0.1); box-shadow: 0 0 20px rgba(var(--theme-color-rgb), 0.3); }
+
+/* ========================================== */
+/* 📱 MOBILE RESPONSIVE (100% FIX)            */
+/* ========================================== */
+@media (max-width: 900px) {
+  .stepContainer {
+    padding: 25px 20px; /* 🔥 Sgherna l-Padding l-kbir */
+  }
+
+  .formGridFast {
+    grid-template-columns: 1fr; /* 🔥 l-Inputs y-weliw m-sstfin wa7d t7t lakhor */
+  }
+
+  .stepTitle {
+    font-size: 1.5rem; /* Ssgharna l-Ktaba */
+    flex-wrap: wrap;
+  }
+
+  /* 🔥 SQUAD LAYOUT FIX */
+  .squadLayout {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .opTabs {
+    width: 100%; /* L-Tabs y-chedou l-Ecran kamel machi ghir 240px */
+  }
+
+  /* 🔥 PROJECT TOGGLE FIX (OUI / NON) */
+  .projectToggleZone {
+    padding: 20px;
+  }
+  .toggleLabel {
+    font-size: 1rem;
+  }
+  .toggleBtns {
+    flex-direction: column; /* L-Boutons OUI/NON y-t-sttfou l-te7t */
+    gap: 15px;
+  }
+  .toggleBtn {
+    width: 100%;
+    padding: 15px;
+  }
+
+  /* 🔥 ACTION BUTTONS FIX (RETOUR / SUIVANT) */
+  .stepActions {
+    flex-direction: column; /* L-Boutons y-weliw wa7d fou9 lakhor */
+    gap: 15px;
+  }
+  .btnPrev, .btnNext, .btnSubmitFinal {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .successTerminal {
+    padding: 40px 20px !important;
+  }
+  .successTitle {
+    font-size: 1.8rem;
+  }
+}

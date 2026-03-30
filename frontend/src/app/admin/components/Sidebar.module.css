@@ -113,3 +113,47 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
+/* ========================================== */
+/* 📱 MOBILE RESPONSIVE: ADMIN SIDEBAR        */
+/* ========================================== */
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    z-index: 100;
+  }
+
+  .logoContainer {
+    border-bottom: none;
+    padding: 10px;
+  }
+
+  .glitchLogo {
+    font-size: 1.2rem;
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto; /* Y-scrolla l-limen w l-isser f l-tel */
+    padding: 0;
+    gap: 5px;
+  }
+
+  .navItem {
+    padding: 10px;
+  }
+
+  .text, .bottomSection {
+    display: none; /* N-khebiw l-Text w l-Status f l-tel, n-khelliw ghir les Icones */
+  }
+
+  .icon {
+    margin-right: 0;
+  }
+}

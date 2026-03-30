@@ -20,8 +20,8 @@ export default function SponsorsPage() {
             et du développement de l'Économie Sociale et Solidaire dans la région de l'Oriental.
           </p>
           
-          {/* L-Bouton dyal l-Cahier des charges */}
-          <a href="/Dossier_Sponsoring_OrientalHack.pdf" download className={styles.downloadBtn}>
+          {/* 🔥 L-Bouton dyal l-Dossier Sponsoring Jdid */}
+          <a href="/Dossier sponsoring.Orientalhack 2..0.pdf" download className={styles.downloadBtn}>
             <Download size={20} /> TÉLÉCHARGER LE DOSSIER SPONSOR
           </a>
         </div>

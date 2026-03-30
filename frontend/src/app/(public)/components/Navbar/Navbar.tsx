@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Info, HelpCircle, Database, Handshake, Mail, Users } from 'lucide-react';
+import { Home, Info, HelpCircle, Database, Handshake, Mail, Users, Menu, X, Terminal, ShieldAlert } from 'lucide-react';
 import NavBackground from './ui/NavBackground';
 import InscriptionBtn from './ui/InscriptionBtn';
 import styles from './Navbar.module.css';
@@ -11,6 +11,15 @@ import styles from './Navbar.module.css';
 export default function Navbar() {
   const pathname = usePathname();
   const [isHovered, setIsHovered] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 900);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const links = [
     { name: 'ACCUEIL', path: '/home', icon: <Home size={18} /> },
@@ -23,56 +32,78 @@ export default function Navbar() {
   ];
 
   return (
-    <div className={styles.fixedCenterWrapper}>
-      <nav 
-        className={`${styles.navMorphContainer} ${isHovered ? 'nav-hovered' : ''}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <NavBackground />
+    <>
+      <div className={styles.fixedCenterWrapper}>
+        <nav 
+          className={`${styles.navMorphContainer} ${isHovered && !isMobile ? 'nav-hovered' : ''}`}
+          onMouseEnter={() => !isMobile && setIsHovered(true)}
+          onMouseLeave={() => !isMobile && setIsHovered(false)}
+        >
+          <NavBackground />
 
-        {/* --- LEFT: LOGO OFFICIEL --- */}
-        <Link href="/home" className={styles.logoSection}>
-          {/* 🔥 L-Logo dyalek Hna */}
-          <div className={styles.logoImageWrapper}>
-            <img src="/ORIENTAL HACK.png" alt="Oriental Hack Logo" className={styles.brandLogo} />
-            <div className={styles.logoScanline}></div>
+          {/* --- LEFT: LOGO OFFICIEL --- */}
+          <Link href="/home" className={styles.logoSection}>
+            <div className={styles.logoImageWrapper}>
+              <img src="/ORIENTAL HACK.png" alt="Oriental Hack Logo" className={styles.brandLogo} />
+              <div className={styles.logoScanline}></div>
+            </div>
+            
+            <div className={styles.logoTextWrapper}>
+              <span className={styles.logoTitle}>EDITION_2.0</span>
+              <span className={styles.logoDetail}>SYSTEM // ONLINE</span>
+            </div>
+          </Link>
+
+          {/* --- CENTER: LINKS (DESKTOP) --- */}
+          <div className={styles.linksSection}>
+            {links.map((link) => (
+              <Link 
+                key={link.path} 
+                href={link.path}
+                className={`${styles.cyberLink} ${pathname === link.path ? styles.active : ''}`}
+              >
+                <div className={styles.linkIcon}>{link.icon}</div>
+                <span className={styles.linkText} data-glitch={link.name}>{link.name}</span>
+                <div className={styles.brackets}>
+                  <span className={styles.brLeft}>[</span>
+                  <span className={styles.brRight}>]</span>
+                </div>
+                <div className={styles.activeLine}></div>
+              </Link>
+            ))}
           </div>
-          
-          <div className={styles.logoTextWrapper}>
-            <span className={styles.logoTitle}>EDITION_2.0</span>
-            <span className={styles.logoDetail}>SYSTEM // ONLINE</span>
+
+          {/* --- RIGHT: INSCRIPTION (DESKTOP) --- */}
+          <div className={styles.actionSection}>
+            <InscriptionBtn />
           </div>
+
+          {/* --- MOBILE: HAMBURGER BUTTON --- */}
+          <button className={styles.mobileToggle} onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <X size={28} color="#00d2ff" /> : <Menu size={28} color="#00d2ff" />}
+          </button>
+
+          <div className={styles.borderPulse}></div>
+        </nav>
+      </div>
+
+      {/* 💥 MOBILE: DROPDOWN MENU (M-fre9 3la l-wrapper bach y-t-cliqua) */}
+      <div className={`${styles.mobileNav} ${mobileMenuOpen ? styles.mobileNavOpen : ''}`}>
+        {links.map((link) => (
+          <Link 
+            key={`mob-${link.name}`} 
+            href={link.path} 
+            className={styles.mobileNavLink} 
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            <span className={styles.mobIcon}>{link.icon}</span>
+            {link.name}
+          </Link>
+        ))}
+        <Link href="/inscription" className={styles.mobileCyberBtn} onClick={() => setMobileMenuOpen(false)}>
+          S'INSCRIRE MAINTENANT
         </Link>
-
-        {/* --- CENTER: LINKS --- */}
-        <div className={styles.linksSection}>
-          {links.map((link) => (
-            <Link 
-              key={link.path} 
-              href={link.path}
-              className={`${styles.cyberLink} ${pathname === link.path ? styles.active : ''}`}
-            >
-              <div className={styles.linkIcon}>{link.icon}</div>
-              <span className={styles.linkText} data-glitch={link.name}>{link.name}</span>
-              <div className={styles.brackets}>
-                <span className={styles.brLeft}>[</span>
-                <span className={styles.brRight}>]</span>
-              </div>
-              {/* Effet d l-khet l-t7tani */}
-              <div className={styles.activeLine}></div>
-            </Link>
-          ))}
-        </div>
-
-        {/* --- RIGHT: INSCRIPTION --- */}
-        <div className={styles.actionSection}>
-          <InscriptionBtn />
-        </div>
-
-        {/* Effet l-Neon Pulse 3la l-Border kamla */}
-        <div className={styles.borderPulse}></div>
-      </nav>
-    </div>
+      </div>
+    </>
   );
 }

@@ -1,16 +1,16 @@
 /* ========================================== */
 /* 1. LAYOUT & SCROLL FIX (NATIVE PURE CSS)   */
 /* ========================================== */
-.pageWrapper { position: relative; width: 100vw; background-color: transparent; --theme-color: #00d2ff; transition: --theme-color 0.5s ease; font-family: system-ui, -apple-system, sans-serif; }
+.pageWrapper { position: relative; width: 100vw; background-color: transparent; --theme-color: #00d2ff; transition: --theme-color 0.5s ease; font-family: system-ui, -apple-system, sans-serif; overflow-x: hidden; }
 
-/* 👑 L-BADGE TELEPORT DYAL L-GRAND MASTER (5s Visible, 5s Hidden) */
+/* 👑 L-BADGE TELEPORT DYAL L-GRAND MASTER */
 .creatorBadge {
   position: fixed; z-index: 9999; 
   background: rgba(5, 5, 12, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(0, 210, 255, 0.4); border-left: 4px solid #00d2ff;
   padding: 12px 25px; border-radius: 12px; display: flex; align-items: center; gap: 15px;
   pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0,0.9), inset 0 0 20px rgba(0, 210, 255, 0.1);
-  animation: teleport 40s infinite; /* 40s Total = 4 positions * 10s (5s visible + 5s hidden) */
+  animation: teleport 40s infinite; 
   clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
 }
 
@@ -23,7 +23,6 @@
 .badgeBottom { color: #e0e0f0; font-family: monospace; font-size: 0.95rem; letter-spacing: 1px; }
 .creatorName { color: #00ffaa; text-shadow: 0 0 15px rgba(0, 255, 170, 0.8); font-weight: 900; letter-spacing: 2px; }
 
-/* L-Maths d l-M3ellmin: 5s Ban, 5s Ghber = 10s per corner. 10s / 40s = 25% per cycle. 5s / 40s = 12.5% */
 @keyframes teleport {
   0%, 12.5% { bottom: 40px; right: 40px; top: auto; left: auto; opacity: 1; transform: scale(1); }
   13%, 24.9% { opacity: 0; transform: scale(0.5); }
@@ -40,13 +39,13 @@
 .heroSection { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 20px; transition: opacity 0.1s; will-change: opacity; }
 .heroBadge { display: inline-flex; align-items: center; gap: 12px; color: var(--theme-color); font-family: monospace; font-size: 1.1rem; border: 1px solid var(--theme-color); padding: 12px 30px; border-radius: 4px; margin-bottom: 25px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); font-weight: bold; letter-spacing: 3px; box-shadow: inset 0 0 20px rgba(var(--theme-color), 0.2); }
 .zapPulse { animation: pulse 1s infinite alternate; } @keyframes pulse { 100% { transform: scale(1.2); filter: drop-shadow(0 0 10px var(--theme-color)); } }
-.megaTitle { font-size: clamp(3.5rem, 8vw, 8.5rem); font-weight: 900; color: #fff; line-height: 1; margin: 0 0 10px; letter-spacing: -2px; position: relative; text-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 50px var(--theme-color); pointer-events: auto; }
+.megaTitle { font-size: clamp(3rem, 8vw, 8.5rem); font-weight: 900; color: #fff; line-height: 1; margin: 0 0 10px; letter-spacing: -2px; position: relative; text-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 50px var(--theme-color); pointer-events: auto; }
 .megaTitle::before, .megaTitle::after { content: attr(data-text); position: absolute; inset: 0; opacity: 0.8; z-index: -1; pointer-events: none; }
 .megaTitle::before { left: 4px; text-shadow: -2px 0 #ff0055; clip: rect(44px, 900px, 56px, 0); animation: glitch 3s infinite linear alternate-reverse; }
 .megaTitle::after { left: -4px; text-shadow: -2px 0 var(--theme-color); clip: rect(44px, 900px, 56px, 0); animation: glitch2 2.5s infinite linear alternate-reverse; }
 @keyframes glitch { 0% { clip: rect(20px, 9999px, 80px, 0); } 100% { clip: rect(80px, 9999px, 20px, 0); } }
 @keyframes glitch2 { 0% { clip: rect(80px, 9999px, 20px, 0); } 100% { clip: rect(20px, 9999px, 80px, 0); } }
-.megaSubtitle { font-size: clamp(1.2rem, 3vw, 2.5rem); color: var(--theme-color); font-family: monospace; letter-spacing: 15px; font-weight: 300; margin-bottom: 50px; text-shadow: 0 0 20px var(--theme-color); }
+.megaSubtitle { font-size: clamp(1rem, 3vw, 2.5rem); color: var(--theme-color); font-family: monospace; letter-spacing: 10px; font-weight: 300; margin-bottom: 50px; text-shadow: 0 0 20px var(--theme-color); }
 .scrollBtn { background: transparent; border: none; color: #a0a0b0; font-family: monospace; font-size: 1.1rem; letter-spacing: 3px; display: flex; flex-direction: column; align-items: center; gap: 15px; cursor: pointer; transition: 0.3s; position: absolute; bottom: 60px; pointer-events: auto; }
 .scrollBtn:hover { color: var(--theme-color); transform: translateY(5px); text-shadow: 0 0 10px var(--theme-color); }
 .bounceIcon { animation: bounce 2s infinite; } @keyframes bounce { 50% { transform: translateY(15px); } }
@@ -54,14 +53,11 @@
 /* ========================================== */
 /* 2. THE CYBER DECK (L-UI L-MFERGE3 X3026)   */
 /* ========================================== */
-/* 💥 FIX D L-BACKGROUND: 7iydt l-gradient l-k7el bach y-ban l-Background 3D mn lor! */
 .deckSection { position: relative; z-index: 10; min-height: 100vh; display: flex; align-items: center; padding: 100px 0; background: transparent; }
 .interfaceContainer { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; gap: 60px; align-items: center; }
 
 /* 💥 MAIN DISPLAY CARD */
 .mainDisplay { flex: 1; perspective: 2500px; position: relative; }
-
-/* DETAILS D 3026 F L-BACKGROUND D L-CARD */
 .cardNoise { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"); z-index: 1; pointer-events: none; border-radius: 0 24px 24px 0; }
 .cardCyberGrid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 30px 30px; z-index: 1; pointer-events: none; border-radius: 0 24px 24px 0; mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 80%); -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 80%); }
 .hexOverlay { position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background-image: radial-gradient(var(--theme-color) 2px, transparent 2px); background-size: 20px 20px; opacity: 0.1; border-radius: 50%; filter: blur(5px); z-index: 1; pointer-events: none; animation: spin 20s linear infinite; }
@@ -182,6 +178,58 @@
 .extArrow { opacity: 0.3; transition: 0.3s; }
 .externalNode:hover .extArrow { opacity: 1; transform: translateX(10px) scale(1.2); color: #00d2ff; }
 
-/* RESPONSIVE */
-@media (max-width: 1200px) { .interfaceContainer { flex-direction: column; padding: 40px 20px; } .mainDisplay, .commandMenu { width: 100%; } .menuBtn:hover, .activeBtn { transform: translateX(0) scale(1.02); padding-left: 35px; } }
-@media (max-width: 600px) { .displayContent { padding: 35px; } .typewriterTitle { font-size: 2.2rem; } .menuBtn { padding: 15px 20px; font-size: 1rem; } .creatorBadge { display: none; } }
+/* ========================================== */
+/* 📱 THE MOBILE FIX (RESPONSIVE 100%)        */
+/* ========================================== */
+@media (max-width: 1024px) {
+  .interfaceContainer { 
+    flex-direction: column; padding: 20px 15px; gap: 30px; 
+  }
+  
+  .mainDisplay, .commandMenu { width: 100%; perspective: none; }
+  
+  /* 💥 FIX D L-CARD KHAWYA (FORCE VISIBILITY) */
+  .displayContent { 
+    clip-path: none; border-radius: 12px; padding: 25px 20px; 
+    transform: none !important; animation: none !important; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border-left: 4px solid var(--theme-color);
+  }
+  
+  .typewriterTitle { 
+    font-size: 1.8rem; white-space: normal; width: 100% !important; 
+    animation: none !important; border-right: none; 
+    text-shadow: 0 5px 15px rgba(0,0,0,1);
+  }
+  
+  .subtitle, .textContent, .actionButton { 
+    opacity: 1 !important; /* 🔥 HADA HOWA SSER BACH T-BAN L-KTABA F TEL! */
+    animation: none !important; 
+  }
+  
+  .quoteBlock { font-size: 1rem; padding: 15px; margin: 15px 0; border-radius: 4px; }
+  
+  .actionButton { 
+    clip-path: none; border-radius: 8px; width: 100%; justify-content: center; padding: 15px; 
+  }
+  
+  .menuBtn { 
+    clip-path: none; border-radius: 8px; transform: none !important; padding: 15px 20px; 
+    font-size: 1rem;
+  }
+  
+  .menuBtn:hover, .activeBtn { 
+    transform: scale(1.02) !important; padding-left: 25px; 
+  }
+  
+  .nodeIcon { width: 35px; height: 35px; }
+  
+  .megaTitle { font-size: 2.8rem; text-shadow: 0 5px 15px rgba(0,0,0,0.9); }
+  .megaSubtitle { font-size: 1.1rem; letter-spacing: 5px; }
+  .heroBadge { font-size: 0.9rem; padding: 10px 20px; margin-bottom: 15px; }
+  
+  /* N-khebiw l-Zwa9 l-Tqil f l-Tel */
+  .creatorBadge, .hudRadarCircle, .scanLaser, .hudCrosshairTL, .hudCrosshairBR, .dataMetrics { 
+    display: none !important; 
+  }
+}

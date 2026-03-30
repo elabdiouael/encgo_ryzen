@@ -17,3 +17,13 @@
 .stepperZone { width: 100%; opacity: 0; animation: dropIn 0.8s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards; }
 
 @keyframes dropIn { 0% { opacity: 0; transform: translateY(-30px) scale(0.95); filter: blur(10px); } 100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
+
+/* ========================================== */
+/* 📱 MOBILE RESPONSIVE FIX                   */
+/* ========================================== */
+@media (max-width: 768px) {
+  .pageContainer { padding: 100px 15px 40px; }
+  .megaTitle { font-size: 2.2rem; line-height: 1.2; }
+  .subtitle { font-size: 1rem; }
+  .systemBadge { font-size: 0.75rem; padding: 8px 15px; letter-spacing: 1px; }
+}

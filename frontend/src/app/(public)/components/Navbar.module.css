@@ -1,119 +1,160 @@
-/* --- L-ESPACE 3D --- */
-.navbarWrapper {
-  position: fixed; top: 0; left: 0; width: 100%; height: 80px;
-  z-index: 1000; perspective: 2000px; /* Sser d l-3D */
+.fixedCenterWrapper {
+  position: fixed; top: 20px; left: 0; width: 100vw;
+  display: flex; flex-direction: column; align-items: center; /* Flex Col bach l-menu y-hbet l-te7t */
+  z-index: 1000; pointer-events: none;
 }
 
-.navScene {
-  width: 100%; height: 100%; position: relative;
+/* ----------------------------------------- */
+/* 1. INITIAL STATE (La Capsule)             */
+/* ----------------------------------------- */
+.navMorphContainer {
+  position: relative; pointer-events: auto;
+  width: 380px; height: 65px;
+  border-radius: 50px; border: 1px solid rgba(0, 210, 255, 0.4);
+  background: rgba(5, 5, 12, 0.75); backdrop-filter: blur(15px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 15px; box-shadow: 0 0 20px rgba(0, 210, 255, 0.15);
+  transition: all 0.6s cubic-bezier(0.8, 0, 0.2, 1);
+  overflow: hidden;
 }
 
-.navCube {
-  width: 100%; height: 100%;
-  position: absolute; transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-  transform-origin: center center -40px; /* L-axe d l-dorane (Ness d l-hauteur) */
+.borderPulse {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 0 10px rgba(188, 19, 254, 0); transition: all 0.6s;
+}
+.navMorphContainer:hover .borderPulse {
+  box-shadow: inset 0 0 20px rgba(188, 19, 254, 0.3); animation: pulseNeon 2s infinite alternate;
+}
+@keyframes pulseNeon { 100% { box-shadow: inset 0 0 40px rgba(0, 210, 255, 0.4); } }
+
+/* --- LOGO SECTION --- */
+.logoSection { display: flex; align-items: center; gap: 12px; text-decoration: none; z-index: 10; cursor: pointer; }
+.logoImageWrapper { position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; overflow: hidden; transition: all 0.5s; }
+.brandLogo { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.8)); transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+.logoTextWrapper { display: flex; flex-direction: column; width: 0; opacity: 0; overflow: hidden; white-space: nowrap; transition: all 0.5s; }
+
+/* --- LINKS --- */
+.linksSection { display: flex; align-items: center; gap: 10px; z-index: 10; transition: all 0.5s; }
+.cyberLink { display: flex; align-items: center; justify-content: center; color: #6a6a7a; text-decoration: none; position: relative; height: 100%; padding: 5px 0; transition: all 0.3s; }
+.linkIcon { transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+.active .linkIcon { color: #00d2ff; filter: drop-shadow(0 0 5px #00d2ff); }
+.linkText { width: 0; opacity: 0; overflow: hidden; white-space: nowrap; font-family: monospace; font-size: 0.75rem; font-weight: bold; transition: all 0.4s ease; margin-left: 0; }
+.brackets { position: absolute; width: 100%; height: 100%; top: 0; left: 0; display: flex; justify-content: space-between; align-items: center; opacity: 0; pointer-events: none; color: #bc13fe; font-weight: bold; font-family: monospace; }
+.brLeft { transform: translateX(10px); transition: transform 0.3s; }
+.brRight { transform: translateX(-10px); transition: transform 0.3s; }
+.activeLine { position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: #00d2ff; box-shadow: 0 0 10px #00d2ff; transition: width 0.3s; }
+.active .activeLine { width: 80%; }
+.cyberLink:hover .activeLine { width: 100%; background: #bc13fe; box-shadow: 0 0 10px #bc13fe; }
+
+.actionSection { z-index: 10; display: flex; align-items: center; }
+
+/* ----------------------------------------- */
+/* 2. HOVER STATE DESKTOP (HUD DEPLOYED)     */
+/* ----------------------------------------- */
+:global(.nav-hovered) {
+  width: 95vw; max-width: 1400px; height: 90px;
+  border-radius: 8px; border-color: #bc13fe;
+  background: rgba(2, 2, 5, 0.95); padding: 0 25px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  clip-path: polygon(0 0, 100% 0, 98% 100%, 2% 100%);
 }
 
-/* L-Animation Mjnouna: L-Moka33ab kiy-dor b 90° mnin kat-7et la souris 3la l-Navbar kamla */
-.navScene:hover .navCube {
-  transform: rotateX(90deg);
-}
+:global(.nav-hovered) .logoImageWrapper { width: 60px; height: 60px; background: rgba(0, 210, 255, 0.05); border-radius: 4px; border: 1px solid rgba(0, 210, 255, 0.2); }
+:global(.nav-hovered) .brandLogo { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.9)); }
+.logoScanline { position: absolute; top: -100%; left: 0; width: 100%; height: 20%; background: linear-gradient(180deg, transparent, rgba(0, 210, 255, 0.6), transparent); display: none; z-index: 5; pointer-events: none; }
+:global(.nav-hovered) .logoImageWrapper:hover .logoScanline { display: block; animation: scanLogo 2s linear infinite; }
+@keyframes scanLogo { 100% { top: 200%; } }
 
-.navFace {
-  position: absolute; width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  backface-visibility: hidden;
-}
+:global(.nav-hovered) .logoTextWrapper { width: 120px; opacity: 1; margin-left: 10px; }
+.logoTitle { color: #fff; font-weight: 900; letter-spacing: 2px; font-size: 1.1rem; text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+.logoDetail { color: #00ffaa; font-family: monospace; font-size: 0.65rem; font-weight: bold; }
 
-/* --- FACE 1: IDLE (L-Wjeh li kiy-ban f l-lowel) --- */
-.faceFront {
-  background: rgba(5, 5, 8, 0.6); backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transform: rotateX(0deg) translateZ(0); /* F l-9ddam */
-}
+:global(.nav-hovered) .linksSection { gap: 15px; } 
+:global(.nav-hovered) .linkText { width: auto; opacity: 1; margin-left: 6px; }
+:global(.nav-hovered) .cyberLink:hover .linkText { color: #fff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); }
+:global(.nav-hovered) .cyberLink:hover .linkIcon { color: #00d2ff; transform: scale(1.1); }
+:global(.nav-hovered) .cyberLink:hover .brackets { opacity: 1; }
+:global(.nav-hovered) .cyberLink:hover .brLeft { transform: translateX(-6px); }
+:global(.nav-hovered) .cyberLink:hover .brRight { transform: translateX(6px); }
+:global(.nav-hovered) .cyberLink:hover .linkText::before { content: attr(data-glitch); position: absolute; top: 0; left: 0; color: #bc13fe; overflow: hidden; animation: noise 0.2s infinite linear alternate-reverse; }
+@keyframes noise { 0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); } 100% { clip-path: inset(50% 0 30% 0); transform: translate(2px, -1px); } }
 
-.navContainer {
-  width: 100%; max-width: 1400px; padding: 0 40px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-
-.logoFront {
-  color: #fff; font-size: 1.5rem; font-weight: 800; text-decoration: none; letter-spacing: 1px;
-}
-.versionFront { color: #8a8a9a; font-weight: 400; font-size: 0.9rem; }
-
-.desktopNav { display: flex; align-items: center; gap: 40px; }
-
-.linkFront {
-  color: #a0a0b0; text-decoration: none; font-size: 0.9rem; font-weight: 500;
-  text-transform: uppercase; transition: color 0.3s;
-}
-.activeFront { color: #00d2ff; border-bottom: 2px solid #00d2ff; padding-bottom: 5px; }
-
-.indicatorPulse {
-  width: 8px; height: 8px; background: #00d2ff; border-radius: 50%;
-  box-shadow: 0 0 10px #00d2ff; animation: pulseFade 2s infinite;
-}
-
-/* --- FACE 2: HOVER (L-Wjeh l-mejnoun li kiy-dor mn te7t) --- */
-.faceBottom {
-  background: #050508; /* K7el mghlo9 */
-  border-bottom: 2px solid #bc13fe;
-  box-shadow: inset 0 -10px 30px rgba(188, 19, 254, 0.2), 0 10px 40px rgba(0, 0, 0, 0.8);
-  transform: rotateX(-90deg) translateZ(40px) translateY(40px); /* L-Face li l-te7t */
-}
-
-.navContainerBottom {
-  width: 100%; max-width: 1400px; padding: 0 40px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-
-.logoBottom {
-  display: flex; align-items: center; gap: 10px; text-decoration: none;
-}
-
-.iconGlow { color: #00ffaa; filter: drop-shadow(0 0 8px #00ffaa); }
-
-.glitchText {
-  color: #fff; font-size: 1.5rem; font-weight: 900; letter-spacing: 3px; position: relative;
-}
-.glitchText::before {
-  content: attr(data-text); position: absolute; left: 2px; text-shadow: -2px 0 #bc13fe;
-  clip: rect(24px, 550px, 90px, 0); animation: glitch-anim2 2s infinite linear alternate-reverse;
-}
-
-.desktopNavBottom { display: flex; align-items: center; gap: 30px; }
-
-.linkBottom {
-  color: #bc13fe; text-decoration: none; font-family: monospace; font-size: 1rem;
-  letter-spacing: 2px; transition: all 0.2s;
-}
-.linkBottom:hover { color: #fff; text-shadow: 0 0 10px #bc13fe; transform: scale(1.1); }
-
-.cyberBtnBottom {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(0, 210, 255, 0.1); border: 1px solid #00d2ff; color: #00d2ff;
-  padding: 8px 20px; font-weight: 900; font-family: monospace; text-decoration: none;
-  box-shadow: 0 0 15px rgba(0, 210, 255, 0.3); transition: all 0.3s;
-}
-.cyberBtnBottom:hover { background: #00d2ff; color: #000; box-shadow: 0 0 30px #00d2ff; }
-
-/* Responsive Mobile (Kan-7iydo l-3D f tel bach ma-y-crachich) */
-.mobileToggle { display: none; position: absolute; top: 25px; right: 20px; z-index: 2000; background: transparent; border: none; }
+/* ----------------------------------------- */
+/* 📱 3. MOBILE RESPONSIVE (DROPDOWN FIX)    */
+/* ----------------------------------------- */
+.mobileToggle { display: none; }
 .mobileNav { display: none; }
 
 @media (max-width: 900px) {
-  .navScene { display: none; } /* N-khebiw l-3D f tel */
-  .mobileToggle { display: block; }
-  .navbarWrapper { background: rgba(5, 5, 8, 0.9); border-bottom: 1px solid rgba(0, 210, 255, 0.2); }
-  .mobileNav {
-    display: flex; flex-direction: column; background: #050508;
-    position: absolute; top: 80px; width: 100%; padding: 20px; border-bottom: 2px solid #00d2ff;
+  .fixedCenterWrapper { top: 15px; padding: 0 20px; }
+  
+  /* L-Capsule d l-Navbar k-t-b9a Sghira w Fixe f l-Tel */
+  .navMorphContainer { 
+    width: 100% !important; max-width: 100%; height: 70px !important; 
+    justify-content: space-between !important; border-radius: 12px !important; 
+    border-color: #00d2ff !important;
+    background: rgba(5, 5, 12, 0.95);
   }
-  .mobileNavLink { color: #fff; text-decoration: none; padding: 15px; border-bottom: 1px solid #222; }
-  .mobileCyberBtn { margin-top: 15px; color: #00d2ff; border: 1px solid #00d2ff; padding: 15px; text-align: center; text-decoration: none; }
-}
 
-@keyframes glitch-anim2 { 0% { clip: rect(15px, 9999px, 100px, 0); } 100% { clip: rect(80px, 9999px, 30px, 0); } }
-@keyframes pulseFade { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.3; transform: scale(0.8); } }
+  /* N-forciw l-Hover state may-dir walo f l-Mobile */
+  :global(.nav-hovered) {
+    width: 100% !important; height: 70px !important;
+    clip-path: none !important; border-radius: 12px !important;
+    background: rgba(5, 5, 12, 0.95) !important;
+    padding: 0 15px !important; box-shadow: 0 0 20px rgba(0, 210, 255, 0.15) !important;
+  }
+  
+  /* L-Ktaba d l-Logo kat-b9a bayna f l-Tel */
+  .logoTextWrapper { display: flex !important; opacity: 1 !important; width: auto !important; margin-left: 10px; }
+  .logoTitle { font-size: 1rem; }
+  .logoDetail { display: none; }
+  
+  /* N-khbiw les liens l-kbaar */
+  .linksSection, .actionSection { display: none !important; }
+  :global(.nav-hovered) .linksSection, :global(.nav-hovered) .actionSection { display: none !important; }
+  
+  /* Bouton d l-Hamburger */
+  .mobileToggle { 
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 2000; background: rgba(0, 210, 255, 0.1); 
+    border: 1px solid #00d2ff; border-radius: 8px; cursor: pointer; 
+    padding: 8px; color: #00d2ff; pointer-events: auto;
+  }
+  
+  /* L-Dropdown Menu (K-y-hbet l-Te7t) */
+  .mobileNav {
+    display: flex; flex-direction: column; gap: 5px;
+    background: rgba(5, 5, 12, 0.98); backdrop-filter: blur(20px); 
+    width: 100%; padding: 20px; margin-top: 10px; /* L-Espace bin l-Navbar w l-Menu */
+    border: 1px solid #00d2ff; border-radius: 12px; 
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9); z-index: 1500;
+    pointer-events: auto;
+    /* L-Animation d l-Hbot */
+    transform-origin: top;
+    animation: menuDrop 0.3s ease-out forwards;
+  }
+  
+  @keyframes menuDrop {
+    0% { opacity: 0; transform: scaleY(0.5) translateY(-20px); }
+    100% { opacity: 1; transform: scaleY(1) translateY(0); }
+  }
+  
+  .mobileNavLink { 
+    display: flex; align-items: center; gap: 15px;
+    color: #a0a0b0; text-decoration: none; padding: 15px; 
+    border-bottom: 1px solid rgba(255,255,255,0.05); 
+    font-family: monospace; font-weight: bold; font-size: 1.1rem;
+    transition: 0.3s;
+  }
+  .mobIcon { color: #bc13fe; }
+  .mobileNavLink:hover { color: #fff; background: rgba(0, 210, 255, 0.1); padding-left: 20px; border-left: 3px solid #00d2ff; }
+  .mobileNavLink:hover .mobIcon { color: #00d2ff; }
+
+  .mobileCyberBtn { 
+    margin-top: 15px; color: #000; background: #bc13fe;
+    padding: 15px; text-align: center; text-decoration: none; 
+    font-family: monospace; font-weight: 900; border-radius: 8px; 
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.5);
+  }
+}

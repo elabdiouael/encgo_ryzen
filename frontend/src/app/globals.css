@@ -40,3 +40,15 @@ a {
     color-scheme: dark;
   }
 }
+
+/* ========================================== */
+/* 📱 GLOBAL MOBILE FIXES (RYZEN OS)          */
+/* ========================================== */
+@media (max-width: 900px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100vw !important;
+    position: relative;
+  }
+  /* 💥 FIX: 7iydna dik * { animation: none } li kant k-t-khbe3 l-Ktaba */
+}
