@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Cpu, Github, Linkedin, Mail } from 'lucide-react';
+import { Cpu, Github, Instagram, Linkedin, Mail } from 'lucide-react';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -32,6 +32,7 @@ export default function Footer() {
             <a href="#" className={styles.termLink}><Mail size={14}/> ryzenclub.encgoujda@ump.ac.ma</a>
             <a href="#" className={styles.termLink}><Linkedin size={14}/> /Ryzen Encgo</a>
             <a href="#" className={styles.termLink}><Github size={14}/> /oriental-hack</a>
+            <a href="#" className={styles.termLink}><Instagram size={14}/> /Ryzenencg.o</a>
           </div>
 
           <div className={styles.gridCol}>

@@ -20,17 +20,17 @@ export default function OrganizerCards() {
     // 🎓 3. LES PROFESSEURS
     {
       id: 3, name: "PROF. ADIL RACHDI", role: "Superviseur & Coordinateur",
-      description: "Expert académique, il assure l'encadrement scientifique et la validation des projets technologiques du hackathon.",
+      description: "Le Professeur Adil Rachdi est enseignant-chercheur à l’École Nationale de Commerce et de Gestion et supervise les activités parascolaires",
       icon: <Award size={24} />, colorClass: styles.purpleAura, image: "/orga/Le Professeur Adil Rachdi .jpeg" 
     },
     {
       id: 4, name: "PROF. YASSINE AZIZI", role: "Superviseur & Coordinateur",
-      description: "Parrain de cette édition, apportant son expertise stratégique et son accompagnement aux équipes.",
+      description: "Le Professeur Yassine Azizi est enseignant-chercheur à l’École Nationale de Commerce et de Gestion et encadre le Club Ryzen.",
       icon: <Award size={24} />, colorClass: styles.cyanAura, image: "/orga/Le Professeur Yassine Azizi .jpeg" 
     },
     // 🌟 4. LE BUREAU & RESPONSABLES
     { id: 5, name: "IMANE AZLAF", role: "Vice-Présidente", description: "Bras droit de la présidence, elle assure la coordination stratégique.", icon: <Star size={24} />, colorClass: styles.purpleAura, image: "/orga/VicePresidente Imane Azlaf.jpeg" },
-    { id: 6, name: "NOUHAILA ARZINE", role: "Vice-Présidente", description: "Bras droit de la présidence, elle assure la coordination et le suivi tactique.", icon: <Star size={24} />, colorClass: styles.cyanAura, image: "/orga/Nouhaila Arzine.jpeg" },
+    { id: 6, name: "NOUHAILA ARZINE", role: "comité d’organisation", description: "Bras droit de la présidence, elle assure la coordination et le suivi tactique.", icon: <Star size={24} />, colorClass: styles.cyanAura, image: "/orga/Nouhaila Arzine.jpeg" },
     { id: 7, name: "ZINEB BOUDOUASAR", role: "Resp. Communication", description: "Voix de l'événement, elle gère l'image de marque et les relations publiques.", icon: <Megaphone size={24} />, colorClass: styles.purpleAura, image: "/orga/Résponsable Communication Zineb Boudouasar.jpeg" },
     { id: 8, name: "ISLAM BOUCHIKHI", role: "Resp. Ressources Humaines", description: "Garant de la cohésion d'équipe et de l'intégration du comité.", icon: <Users size={24} />, colorClass: styles.cyanAura, image: "/orga/Résponsable Ressources Humane  Islam Bouchikhi.jpeg" },
     { id: 9, name: "SALMA EL BOUCHIKHI", role: "Resp. Trésorerie", description: "Pilier financier, elle gère le budget et la viabilité économique.", icon: <Briefcase size={24} />, colorClass: styles.purpleAura, image: "/orga/Résponsable Trésorière  Salma El Bouchikhi.jpeg" },

@@ -30,14 +30,14 @@ export default function ContactPage() {
               <Mail size={24} className={styles.infoIcon} />
               <div>
                 <h4>RÉSEAU EMAIL</h4>
-                <p>contact@ryzenclub.ma</p>
+                <p>ryzenclub.encgo@ump.ac.ma</p>
               </div>
             </div>
             <div className={styles.infoCard}>
               <Phone size={24} className={styles.infoIcon} />
               <div>
                 <h4>FRÉQUENCE VOCALE</h4>
-                <p>+212 6 00 00 00 00</p>
+                <p>+212 703698836</p>
               </div>
             </div>
           </div>
