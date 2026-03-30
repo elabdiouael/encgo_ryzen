@@ -1,73 +1,120 @@
 .cardsWrapper {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px; width: 100%; position: relative; z-index: 10; max-width: 1000px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px; width: 100%; position: relative; z-index: 10; max-width: 1200px; margin: 0 auto;
 }
 
 .holoCard {
-  position: relative; background: rgba(10, 10, 15, 0.7); backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px;
-  overflow: hidden; transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative; background: rgba(5, 5, 10, 0.8); backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 12px;
+  overflow: hidden; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   opacity: 0; animation: riseUp 0.8s forwards; min-height: 380px;
 }
 
 @keyframes riseUp { 0% { opacity: 0; transform: translateY(40px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 
-/* 📸 AVATAR LAYER (L-S7our d l-Image) */
-/* 📸 AVATAR LAYER (L-S7our d l-Image) */
+/* ========================================= */
+/* 📸 L-BACKGROUND INTERACTIF (Z-ZEBDA)      */
+/* ========================================= */
 .avatarLayer {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   z-index: 0; opacity: 0; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  overflow: hidden;
-  border-radius: 16px;
-  background: #020205; /* 🔥 FIX: Loun k7el f l-fond bach y-gouverni l-espace l-khawi f jnab */
+  overflow: hidden; border-radius: 12px; background: #030308;
 }
 
-.orgImage {
-  width: 100%; height: 100%; 
-  object-fit: contain; /* 🔥 THE MASTER FIX: Tsswira k-t-ban kamla 100% bla 9ti3 */
-  object-position: center; /* N-centriwha f l-wst d l-carte */
-  filter: grayscale(100%) brightness(0.4) contrast(1.2); 
-  transform: scale(1);
-  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.imageOverlay {
+/* 🕸️ THE CYBER GRID (K-t-khebbi s-swad f j-jnab) */
+.cyberGridBg {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(0deg, rgba(5,5,10,1) 10%, rgba(5,5,10,0.6) 50%, rgba(188,19,254,0.2) 100%);
+  background-image: 
+    linear-gradient(rgba(0, 210, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 210, 255, 0.1) 1px, transparent 1px);
+  background-size: 25px 25px; background-position: center;
+  z-index: 1; animation: gridMove 20s linear infinite;
+}
+@keyframes gridMove { 100% { background-position: 50px 50px; } }
+
+/* 🔵 THE GLOWING CORE (Animé mor tsswira) */
+.pulseCore {
+  position: absolute; top: 50%; left: 50%; width: 200px; height: 200px;
+  transform: translate(-50%, -50%); border-radius: 50%;
+  background: radial-gradient(circle, rgba(188, 19, 254, 0.2) 0%, transparent 70%);
+  border: 1px dashed rgba(0, 210, 255, 0.3); z-index: 2;
+  animation: spinCore 10s linear infinite;
+}
+@keyframes spinCore { 100% { transform: translate(-50%, -50%) rotate(360deg) scale(1.2); } }
+
+/* THE IMAGE ITSELF */
+.orgImage {
+  position: relative; z-index: 3; width: 100%; height: 100%; 
+  object-fit: contain; object-position: center; 
+  filter: grayscale(100%) brightness(0.5) contrast(1.2); 
+  transform: scale(1); transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* 🔥 ACTIONS D L-HOVER 3LA L-CARTE */
+/* 🕶️ FILTER SI7RI DYAL OUAIL (Light Negative / Brightness) */
+.ouailFilter {
+  /* K-n-n9iw l-k7ouliya b Light Invert w Sepia bash yban ndiiiif */
+  filter: invert(0.08) sepia(0.2) brightness(1.3) contrast(1.1) grayscale(100%) !important;
+}
+.holoCard:hover .ouailFilter {
+  filter: invert(0) sepia(0) brightness(1.1) contrast(1.1) grayscale(10%) !important;
+}
+
+.imageOverlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 4;
+  background: linear-gradient(0deg, rgba(5,5,10,1) 10%, rgba(5,5,10,0.5) 60%, transparent 100%);
+}
+
+/* ========================================= */
+/* 🤖 TRANSFORMER PRIME HOVER EFFECT         */
+/* ========================================= */
+.transformerBorders {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border: 2px solid transparent; border-radius: 12px; pointer-events: none;
+  z-index: 10; transition: all 0.4s ease;
+}
+
 .holoCard:hover {
-  transform: translateY(-10px); border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 0 0 30px rgba(188, 19, 254, 0.2);
+  transform: translateY(-15px) scale(1.02);
+  background: rgba(15, 15, 25, 0.9);
+  /* L-Glow d Optimus Prime */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9), 
+              0 0 20px rgba(0, 210, 255, 0.4), 
+              inset 0 0 30px rgba(188, 19, 254, 0.2);
+}
+
+.holoCard:hover .transformerBorders {
+  border-color: rgba(0, 210, 255, 0.5);
+  /* Forme géométrique f jnab */
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
 }
 
 .holoCard:hover .avatarLayer { opacity: 1; }
- .holoCard:hover .orgImage {
-  transform: scale(1.02); /* 🔥 Zoom khfiiiiif bzaf ghir 2% bach y-biyen l-effet */
-  filter: grayscale(20%) brightness(0.9) contrast(1.1); 
+.holoCard:hover .orgImage {
+  transform: scale(1.05); filter: grayscale(10%) brightness(1) contrast(1.1); 
 }
+
 /* ---------------------------------- */
 
 .topBeam { position: absolute; top: 0; left: 0; width: 100%; height: 3px; opacity: 0.5; transition: all 0.5s; z-index: 2; }
 .holoCard:hover .topBeam { height: 5px; opacity: 1; box-shadow: 0 0 20px currentColor; }
 
-.purpleAura { color: #bc13fe; background-color: #bc13fe; }
-.cyanAura { color: #00d2ff; background-color: #00d2ff; }
+.purpleAura { color: #bc13fe; }
+.cyanAura { color: #00d2ff; }
 
-/* Content wrapper (Bach y-b9a fo9 tsswira) */
-.cardContent { position: relative; z-index: 2; padding: 40px 30px; display: flex; flex-direction: column; gap: 20px; height: 100%; }
+/* Content wrapper */
+.cardContent { position: relative; z-index: 5; padding: 30px 25px; display: flex; flex-direction: column; gap: 15px; height: 100%; }
 
-.cardHeader { display: flex; align-items: center; gap: 20px; }
+.cardHeader { display: flex; align-items: center; gap: 15px; }
 .iconBox {
-  width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
   background: rgba(255, 255, 255, 0.05); color: inherit; border: 1px solid currentColor;
   backdrop-filter: blur(5px); transition: all 0.4s;
 }
-.holoCard:hover .iconBox { transform: scale(1.1) rotate(10deg); box-shadow: 0 0 20px currentColor; background: rgba(0,0,0,0.5); }
+.holoCard:hover .iconBox { transform: scale(1.15) rotate(15deg); box-shadow: 0 0 20px currentColor; background: rgba(0,0,0,0.6); }
 
-.titleBox { display: flex; flex-direction: column; }
-.orgName { color: #fff; font-size: 1.6rem; font-weight: 900; letter-spacing: 2px; margin: 0; position: relative; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-.orgRole { color: #00d2ff; font-family: monospace; font-size: 0.85rem; margin-top: 5px; font-weight: bold; background: rgba(0,0,0,0.5); padding: 2px 8px; border-radius: 4px; display: inline-block; width: fit-content; }
+.titleBox { display: flex; flex-direction: column; z-index: 6; }
+.orgName { color: #fff; font-size: 1.4rem; font-weight: 900; letter-spacing: 1px; margin: 0; position: relative; text-shadow: 0 4px 15px rgba(0,0,0,1); }
+.orgRole { color: #00d2ff; font-family: monospace; font-size: 0.8rem; margin-top: 5px; font-weight: bold; background: rgba(0,0,0,0.8); padding: 4px 10px; border-radius: 4px; display: inline-block; width: fit-content; border-left: 2px solid currentColor;}
 
 .holoCard:hover .orgName::before {
   content: attr(data-text); position: absolute; left: 0; top: 0; width: 100%; color: #bc13fe;
@@ -75,29 +122,11 @@
 }
 @keyframes glitchText { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
 
-.cardBody { color: #e1e1e1; font-size: 1rem; line-height: 1.6; flex-grow: 1; text-shadow: 0 1px 5px rgba(0,0,0,0.8); }
+.cardBody { color: #e1e1e1; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; text-shadow: 0 2px 10px rgba(0,0,0,1); background: rgba(0,0,0,0.4); padding: 10px; border-radius: 8px; border-left: 1px solid rgba(255,255,255,0.1); }
 
 .cardFooter {
   margin-top: auto; padding-top: 15px; border-top: 1px dashed rgba(255, 255, 255, 0.2);
-  display: flex; align-items: center; gap: 8px; color: #a0a0b0; font-family: monospace; font-size: 0.8rem; font-weight: bold;
+  display: flex; align-items: center; gap: 8px; color: #a0a0b0; font-family: monospace; font-size: 0.8rem; font-weight: bold; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 6px;
 }
 .statusOnline { color: #00ffaa; animation: blink 2s infinite; text-shadow: 0 0 5px #00ffaa; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-.holoScanline {
-  position: absolute; top: -100%; left: 0; width: 100%; height: 50%;
-  background: linear-gradient(180deg, transparent, rgba(0, 210, 255, 0.1), transparent);
-  animation: scanHolo 3s linear infinite; pointer-events: none; z-index: 5; display: none;
-}
-.holoCard:hover .holoScanline { display: block; }
-@keyframes scanHolo { 100% { top: 200%; } }
-
-/* ========================================== */
-/* 📱 MOBILE RESPONSIVE FIX                   */
-/* ========================================== */
-@media (max-width: 768px) {
-  .cardsWrapper { grid-template-columns: 1fr; gap: 20px; padding: 0 10px; }
-  .holoCard { min-height: 320px; }
-  .orgName { font-size: 1.4rem; }
-  .cardContent { padding: 30px 20px; }
-}
