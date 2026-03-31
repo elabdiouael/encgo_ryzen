@@ -6,7 +6,7 @@ export default function OrganizerCards() {
   const organizers = [
     // 👑 1. L-PRÉSIDENCE
     {
-      id: 1, name: "SOUHAILA", role: "Présidente du Club Ryzen",
+      id: 1, name: "Souhaîla kaddouri", role: "Présidente du Club Ryzen",
       description: "Leader visionnaire et coordinatrice générale de l'Oriental Hack 2.0. Passionnée par l'innovation et l'impact de l'IA.",
       icon: <Star size={24} />, colorClass: styles.purpleAura, image: "/souaila.jpeg" 
     },
@@ -46,8 +46,10 @@ export default function OrganizerCards() {
     { id: 17, name: "ABDELGHANI EL BOUKNIFY", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.purpleAura, image: "/orga/Abdelghani El Bouknify.jpeg" },
     { id: 18, name: "AHMED RAJI", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Ahmed Raji.PNG" },
     { id: 19, name: "HOUSSAM BOULAHROUZ", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.purpleAura, image: "/orga/Houssam Boulahrouz.jpeg" },
-    { id: 20, name: "ILIAS EL ANGOUDI", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Ilias El Angoudi.jpeg" }
-    { id: 21, name: "Salma Kaddouri", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/salma kaddouri.jpeg" }
+    { id: 20, name: "ILIAS EL ANGOUDI", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Ilias El Angoudi.jpeg" },
+    { id: 21, name: "Salma Kaddouri", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/salma kaddouri.jpeg" },
+    { id: 22, name: "Mohammed saher", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Mohammed saher.jpeg" },
+    { id: 23, name: "Chadi Rachdi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Chadi Rachdi.jpeg" }
   ];
 
   return (
