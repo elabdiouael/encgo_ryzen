@@ -86,7 +86,7 @@ export default function OrganizerCards() {
             <div className={styles.cardBody}><p>{org.description}</p></div>
 
             <div className={styles.cardFooter}>
-              <ShieldAlert size={14} /> STATUS: <span className={styles.statusOnline}>OPÉRATIONNEL</span>
+              <ShieldAlert size={14} /> STATUS : <span className={styles.statusOnline}>OPÉRATIONNEL</span>
             </div>
           </div>
           
