@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 // 🔥 THE BRANDING OVERRIDE
 export const metadata: Metadata = {
   title: "Oriental Hack 2.0 | System Online",
-  description: "Oriental Hack 2.0 - La plus grande compétition de hackathon dans l'Oriental.",
+  description: "Oriental Hack 2.0 - La plus grande compétition de hackathon dans l'Oriental .",
   icons: {
     icon: "/ORIENTAL HACK.png", // 👈 Path direct f 'public'
     shortcut: "/ORIENTAL HACK.png",
