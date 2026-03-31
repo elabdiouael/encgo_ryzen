@@ -14,10 +14,12 @@ export default function ArchiveContent() {
   // 🔥 Les Nouveaux Logos (M-sttfin bach y-dourou f l-Carousel)
   const partners = [
     { src: '/imagess/umppppppppppppp.png', alt: 'UMP' },
-    { src: '/imagess/cri.png', alt: 'CRI Oriental' },
-    { src: '/imagess/DONDATUION.png', alt: 'Fondation Abdelkader Bensalah' },
     { src: '/imagess/encg.png', alt: 'ENCG Oujda' },
+    { src: '/imagess/DONDATUION.png', alt: 'Fondation Abdelkader Bensalah' },
+
+    { src: '/imagess/cri.png', alt: 'CRI Oriental' },
     { src: '/imagess/excen.png', alt: 'Excen Consulting' },
+    
     { src: '/imagess/logo mark 2a.png', alt: 'Mark 2A' },
   ];
 

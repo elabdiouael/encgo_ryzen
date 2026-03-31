@@ -47,6 +47,7 @@ export default function OrganizerCards() {
     { id: 18, name: "AHMED RAJI", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Ahmed Raji.PNG" },
     { id: 19, name: "HOUSSAM BOULAHROUZ", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.purpleAura, image: "/orga/Houssam Boulahrouz.jpeg" },
     { id: 20, name: "ILIAS EL ANGOUDI", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Ilias El Angoudi.jpeg" }
+    { id: 21, name: "Salma Kaddouri", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/salma kaddouri.jpeg" }
   ];
 
   return (

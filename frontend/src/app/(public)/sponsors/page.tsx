@@ -62,6 +62,7 @@ export default function SponsorsPage() {
               <div className={styles.logosBox}>
                 <div className={styles.logoItem}>UNIVERSITÉ MOHAMMED PREMIER (UMP)</div>
                 <div className={styles.logoItem}>ENCG OUJDA</div>
+                
               </div>
             </div>
           </div>
