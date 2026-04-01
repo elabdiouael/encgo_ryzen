@@ -13,7 +13,7 @@ const DECK_DATA = {
     title: "ORIENTAL_HACK 2.0", 
     subtitle: "L’Oriental Hackathon lance officiellement son appel à candidatures !",
     description: "Étudiants, développeurs, designers et entrepreneurs, saisissez l’opportunité de relever un défi unique : pendant 3 jours d’intelligence collective, transformez vos idées en solutions digitales innovantes qui répondent aux enjeux des entreprises et organisations de l’économie sociale et solidaire au Maroc.",
-    quote: "« ⏳ Inscriptions ouvertes jusqu’au 13 Avril 2026 Places limitées — ne ratez pas votre chance. »",
+    quote: "« ⏳ Inscriptions ouvertes jusqu’au 14 Avril 2026 Places limitées — ne ratez pas votre chance. »",
     actionText: "REJOIGNEZ L'EXPÉRIENCE", actionLink: "/inscription"
   },
   register: {
