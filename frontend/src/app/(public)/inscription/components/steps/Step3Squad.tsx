@@ -87,13 +87,42 @@ export default function Step3Squad({ data, updateData, onNext, onPrev }: StepPro
         <div className={styles.opFormArea}>
           <h3 className={styles.opFormTitle}>FICHIER CLASSÉ: {activeOp === 0 ? 'TEAM LEADER' : `OPÉRATEUR 0${activeOp + 1}`}</h3>
           
-          {/* 💥 Rje3na value w onChange 7it l-CSS wla khfif, ghadi t-kteb b z-zerba */}
           <div className={styles.formGridFast}>
-            <CyberInput label="NOM COMPLET *" value={currentOp.nomComplet} onChange={(e) => handleMembreChange(activeOp, 'nomComplet', e.target.value)} className={styles.fullWidth} />
-            <CyberInput label="EMAIL *" type="email" value={currentOp.email} onChange={(e) => handleMembreChange(activeOp, 'email', e.target.value)} />
-            <CyberInput label="TÉLÉPHONE *" type="tel" value={currentOp.telephone} onChange={(e) => handleMembreChange(activeOp, 'telephone', e.target.value)} />
-            <CyberInput label="ÉTABLISSEMENT / UNIVERSITÉ *" value={currentOp.etablissement} onChange={(e) => handleMembreChange(activeOp, 'etablissement', e.target.value)} />
-            <CyberInput label="NIVEAU D'ÉTUDES *" value={currentOp.niveauEtude} onChange={(e) => handleMembreChange(activeOp, 'niveauEtude', e.target.value)} />
+            <CyberInput 
+              label="NOM COMPLET *" 
+              value={currentOp.nomComplet} 
+              onChange={(e) => handleMembreChange(activeOp, 'nomComplet', e.target.value)} 
+              className={styles.fullWidth} 
+            />
+            <CyberInput 
+              label="EMAIL *" 
+              type="email" 
+              value={currentOp.email} 
+              onChange={(e) => handleMembreChange(activeOp, 'email', e.target.value)} 
+            />
+            
+            {/* 🔥 THE SAUCE IS HERE 🔥 */}
+            <CyberInput 
+              label="TÉLÉPHONE *" 
+              type="text" 
+              maxLength={10}
+              value={currentOp.telephone} 
+              onChange={(e) => {
+                const onlyNumbers = e.target.value.replace(/[^0-9]/g, '');
+                handleMembreChange(activeOp, 'telephone', onlyNumbers);
+              }} 
+            />
+
+            <CyberInput 
+              label="ÉTABLISSEMENT / UNIVERSITÉ *" 
+              value={currentOp.etablissement} 
+              onChange={(e) => handleMembreChange(activeOp, 'etablissement', e.target.value)} 
+            />
+            <CyberInput 
+              label="NIVEAU D'ÉTUDES *" 
+              value={currentOp.niveauEtude} 
+              onChange={(e) => handleMembreChange(activeOp, 'niveauEtude', e.target.value)} 
+            />
           </div>
         </div>
       </div>

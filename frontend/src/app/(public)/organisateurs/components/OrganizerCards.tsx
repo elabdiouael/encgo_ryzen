@@ -56,6 +56,8 @@ export default function OrganizerCards() {
     { id: 23, name: "Chadi Rachdi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Chadi Rachdi.jpeg" },
     { id: 25, name: "Malak Maaroufi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Malak Maaroufi.jpeg" },
     { id: 26, name: "Hiba hachlaf", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Hiba hachlaf.jpeg" },
+    { id: 31, name: "Benyekhlef Asmae", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Mohammed merzouki.jpeg"  },
+
     { id: 27, name: "Salima hajji", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura,  },
     { id: 28, name: "Abir Baroudi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, },
     { id: 29, name: "Achraf Ouahabi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura },
