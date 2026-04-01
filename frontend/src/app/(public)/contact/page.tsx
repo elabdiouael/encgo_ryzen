@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Mail, Phone } from 'lucide-react';
+import { MapPin, Mail, Phone, Linkedin, Instagram, PlaySquare } from 'lucide-react';
 import ScouterBackground from './components/ScouterBackground';
 import TacticalContactForm from './components/TacticalContactForm';
 import styles from './contact.module.css';
@@ -17,7 +17,7 @@ export default function ContactPage() {
 
         <div className={styles.gridContainer}>
           
-          {/* Les Infos */}
+          {/* --- LEFT: Les Infos & Réseaux Sociaux --- */}
           <div className={styles.infoSection}>
             <div className={styles.infoCard}>
               <MapPin size={24} className={styles.infoIcon} />
@@ -26,6 +26,7 @@ export default function ContactPage() {
                 <p>ENCG Oujda, Maroc</p>
               </div>
             </div>
+            
             <div className={styles.infoCard}>
               <Mail size={24} className={styles.infoIcon} />
               <div>
@@ -33,6 +34,7 @@ export default function ContactPage() {
                 <p>ryzenclub.encgo@ump.ac.ma</p>
               </div>
             </div>
+            
             <div className={styles.infoCard}>
               <Phone size={24} className={styles.infoIcon} />
               <div>
@@ -40,9 +42,34 @@ export default function ContactPage() {
                 <p>+212 703698836</p>
               </div>
             </div>
+
+            {/* 🔥 JDID: Social Media Links */}
+            <div className={styles.infoCard}>
+              <Linkedin size={24} className={styles.infoIcon} />
+              <div>
+                <h4>LINKEDIN</h4>
+                <p>Ryzen Encgo</p>
+              </div>
+            </div>
+
+            <div className={styles.infoCard}>
+              <Instagram size={24} className={styles.infoIcon} />
+              <div>
+                <h4>INSTAGRAM</h4>
+                <p>Ryzenencg.o</p>
+              </div>
+            </div>
+
+            <div className={styles.infoCard}>
+              <PlaySquare size={24} className={styles.infoIcon} />
+              <div>
+                <h4>TIKTOK</h4>
+                <p>ryzenencgo</p>
+              </div>
+            </div>
           </div>
 
-          {/* L-Formulaire */}
+          {/* --- RIGHT: L-Formulaire --- */}
           <div className={styles.formSection}>
             <TacticalContactForm />
           </div>

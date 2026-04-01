@@ -29,11 +29,13 @@ export default function OrganizerCards() {
       icon: <Award size={24} />, colorClass: styles.cyanAura, image: "/orga/Le Professeur Yassine Azizi .jpeg" 
     },
     // 🌟 4. LE BUREAU & RESPONSABLES
-    { id: 5, name: "IMANE AZLAF", role: "Vice-Présidente", description: "Bras droit de la présidence, elle assure la coordination stratégique.", icon: <Star size={24} />, colorClass: styles.purpleAura, image: "/orga/VicePresidente Imane Azlaf.jpeg" },
+    { id: 5, name: "IMANE AZLAF", role: "Vice-Présidente", description: "Bras droit de la présidence, elle assure la coordination stratégique.", icon: <Star size={24} />, colorClass: styles.purpleAura, image: "/orga/VicePresidente  Imane Azlaf.jpeg" },
     { id: 6, name: "ZINEB BOUDOUASAR", role: "Resp. Communication", description: "Voix de l'événement, elle gère l'image de marque et les relations publiques.", icon: <Megaphone size={24} />, colorClass: styles.purpleAura, image: "/orga/Résponsable Communication Zineb Boudouasar.jpeg" },
     { id: 7, name: "ISLAM BOUCHIKHI", role: "Resp. Ressources Humaines", description: "Garant de la cohésion d'équipe et de l'intégration du comité.", icon: <Users size={24} />, colorClass: styles.cyanAura, image: "/orga/Résponsable Ressources Humane  Islam Bouchikhi.jpeg" },
     { id: 8, name: "SALMA EL BOUCHIKHI", role: "Resp. Trésorerie", description: "Pilier financier, elle gère le budget et la viabilité économique.", icon: <Briefcase size={24} />, colorClass: styles.purpleAura, image: "/orga/Résponsable Trésorière  Salma El Bouchikhi.jpeg" },
     { id: 9, name: "KHLIL MOHAMMED", role: "Resp. Sponsoring", description: "Négociateur hors pair, créateur de ponts avec les partenaires.", icon: <Handshake size={24} />, colorClass: styles.cyanAura, image: "/orga/Résponsable Sponsoring  Khlil Mohammed.jpeg" },
+    { id: 24, name: "Houda Sehraoui", role: "Média manager", description: "Architecte du rayonnement numérique, elle orchestre la visibilité de l'événement à travers les flux stratégiques du réseau.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Chadi Rachdi.jpeg" },
+
     
     // 🛡️ 5. LES MEMBRES ACTIFS
     { id: 24, name: "NOUHAILA ARZINE", role: "Membre du Comité", description: "Opératrice tactique impliquée dans l'organisation.", icon: <Star size={24} />, colorClass: styles.cyanAura, image: "/orga/Nouhaila Arzine.jpeg" },
@@ -51,7 +53,13 @@ export default function OrganizerCards() {
     { id: 20, name: "ILIAS EL ANGOUDI", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Ilias El Angoudi.jpeg" },
     { id: 21, name: "Salma Kaddouri", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/salma kaddouri.jpeg" },
     { id: 22, name: "Mohammed saher", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Mohammed saher.jpeg" },
-    { id: 23, name: "Chadi Rachdi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Chadi Rachdi.jpeg" }
+    { id: 23, name: "Chadi Rachdi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Chadi Rachdi.jpeg" },
+    { id: 25, name: "Malak Maaroufi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Malak Maaroufi.jpeg" },
+    { id: 26, name: "Hiba hachlaf", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Hiba hachlaf.jpeg" },
+    { id: 27, name: "Salima hajji", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura,  },
+    { id: 28, name: "Abir Baroudi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, },
+    { id: 29, name: "Achraf Ouahabi", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura },
+    { id: 30, name: "Benyekhlef Asmae", role: "Membre du Comité", description: "Opérateur tactique impliqué dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura },
   ];
 
   return (
