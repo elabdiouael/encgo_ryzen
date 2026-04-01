@@ -30,13 +30,15 @@ export default function OrganizerCards() {
     },
     // 🌟 4. LE BUREAU & RESPONSABLES
     { id: 5, name: "IMANE AZLAF", role: "Vice-Présidente", description: "Bras droit de la présidence, elle assure la coordination stratégique.", icon: <Star size={24} />, colorClass: styles.purpleAura, image: "/orga/VicePresidente Imane Azlaf.jpeg" },
-    { id: 6, name: "NOUHAILA ARZINE", role: "comité d’organisation", description: "Bras droit de la présidence, elle assure la coordination et le suivi tactique.", icon: <Star size={24} />, colorClass: styles.cyanAura, image: "/orga/Nouhaila Arzine.jpeg" },
-    { id: 7, name: "ZINEB BOUDOUASAR", role: "Resp. Communication", description: "Voix de l'événement, elle gère l'image de marque et les relations publiques.", icon: <Megaphone size={24} />, colorClass: styles.purpleAura, image: "/orga/Résponsable Communication Zineb Boudouasar.jpeg" },
-    { id: 8, name: "ISLAM BOUCHIKHI", role: "Resp. Ressources Humaines", description: "Garant de la cohésion d'équipe et de l'intégration du comité.", icon: <Users size={24} />, colorClass: styles.cyanAura, image: "/orga/Résponsable Ressources Humane  Islam Bouchikhi.jpeg" },
-    { id: 9, name: "SALMA EL BOUCHIKHI", role: "Resp. Trésorerie", description: "Pilier financier, elle gère le budget et la viabilité économique.", icon: <Briefcase size={24} />, colorClass: styles.purpleAura, image: "/orga/Résponsable Trésorière  Salma El Bouchikhi.jpeg" },
-    { id: 10, name: "KHLIL MOHAMMED", role: "Resp. Sponsoring", description: "Négociateur hors pair, créateur de ponts avec les partenaires.", icon: <Handshake size={24} />, colorClass: styles.cyanAura, image: "/orga/Résponsable Sponsoring  Khlil Mohammed.jpeg" },
+    { id: 6, name: "ZINEB BOUDOUASAR", role: "Resp. Communication", description: "Voix de l'événement, elle gère l'image de marque et les relations publiques.", icon: <Megaphone size={24} />, colorClass: styles.purpleAura, image: "/orga/Résponsable Communication Zineb Boudouasar.jpeg" },
+    { id: 7, name: "ISLAM BOUCHIKHI", role: "Resp. Ressources Humaines", description: "Garant de la cohésion d'équipe et de l'intégration du comité.", icon: <Users size={24} />, colorClass: styles.cyanAura, image: "/orga/Résponsable Ressources Humane  Islam Bouchikhi.jpeg" },
+    { id: 8, name: "SALMA EL BOUCHIKHI", role: "Resp. Trésorerie", description: "Pilier financier, elle gère le budget et la viabilité économique.", icon: <Briefcase size={24} />, colorClass: styles.purpleAura, image: "/orga/Résponsable Trésorière  Salma El Bouchikhi.jpeg" },
+    { id: 9, name: "KHLIL MOHAMMED", role: "Resp. Sponsoring", description: "Négociateur hors pair, créateur de ponts avec les partenaires.", icon: <Handshake size={24} />, colorClass: styles.cyanAura, image: "/orga/Résponsable Sponsoring  Khlil Mohammed.jpeg" },
     
     // 🛡️ 5. LES MEMBRES ACTIFS
+    { id: 24, name: "NOUHAILA ARZINE", role: "Membre du Comité", description: "Opératrice tactique impliquée dans l'organisation.", icon: <Star size={24} />, colorClass: styles.cyanAura, image: "/orga/Nouhaila Arzine.jpeg" },
+    { id: 10, name: "Ilias Afilal", role: "Membre du Comité", description: "Opératrice tactique impliquée dans l'organisation.", icon: <Star size={24} />, colorClass: styles.cyanAura, image: "/orga/Ilias Afilal.jpeg" },
+
     { id: 11, name: "AYA BELATTAR", role: "Membre du Comité", description: "Opératrice tactique impliquée dans l'organisation.", icon: <User size={24} />, colorClass: styles.purpleAura, image: "/orga/Aya belattar.jpeg" },
     { id: 12, name: "DOHA ABOUBAKER", role: "Membre du Comité", description: "Opératrice tactique impliquée dans l'organisation.", icon: <User size={24} />, colorClass: styles.cyanAura, image: "/orga/Doha ABOUBAKER.jpeg" },
     { id: 13, name: "INAS KHALIS", role: "Membre du Comité", description: "Opératrice tactique impliquée dans l'organisation.", icon: <User size={24} />, colorClass: styles.purpleAura, image: "/orga/Inas khalis.jpeg" },
