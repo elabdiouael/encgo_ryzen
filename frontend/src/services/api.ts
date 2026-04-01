@@ -13,8 +13,12 @@ export interface ContactMessageDto {
 export const apiService = {
   
   inscrireEquipe: async (data: any) => {
+    console.log("📥 [DATA BRUTE DU FORMULAIRE] :", data);
+
+    // 💥 THE TRANSLATOR PROTOCOL: N-forciw s-smiyat li k-y-bghi Spring Boot
     const springBootPayload = {
-      nomEquipe: data.nomEquipe || "ÉQUIPE SANS NOM",
+      // 👈 L-Fix: K-y-9elleb 3la nomEquipe, awla nom, awla k-y-3ti valeur par défaut
+      nomEquipe: data.nomEquipe || data.nom || "Équipe SANS NOM",
       region: data.region || "Oriental",
       ville: data.ville || "Oujda",
       experienceHackathon: data.experienceHackathon || "NON",
@@ -25,21 +29,26 @@ export const apiService = {
       motivation: data.motivation || "Motivation Ryzen",
       comprehensionTheme: data.comprehensionTheme || "Thème validé",
       aUneIdee: data.aUneIdee || false,
-      titreProjet: data.titreProjet || "",
-      descriptionProjet: data.descriptionProjet || "",
-      problemeIdentifie: data.problemeIdentifie || "",
-      impactPotentiel: data.impactPotentiel || "",
-      faisabilite: data.faisabilite || "",
-      ambitionApres: data.ambitionApres || "",
+      titreProjet: data.titreProjet || "Projet Hackathon",
+      descriptionProjet: data.descriptionProjet || "Description en attente",
+      problemeIdentifie: data.problemeIdentifie || "Problème à définir",
+      impactPotentiel: data.impactPotentiel || "Impact élevé",
+      faisabilite: data.faisabilite || "Faisable",
+      ambitionApres: data.ambitionApres || "Création de startup",
+      
+      // 🚨 THE SNIPER FIX DYAL LES MEMBRES
       membres: (data.membres || []).map((m: any, index: number) => ({
-        nomComplet: m.nomComplet || `Membre ${index + 1}`,
+        // 👈 L-Fix: Mnin React y-sifet 'nom' awla 'name', n-reddouh 'nomComplet' b-zzez
+        nomComplet: m.nomComplet || m.nom || m.name || `Membre ${index + 1}`,
         email: m.email || `user${index}@hackathon.com`,
         telephone: (m.telephone || "0600000000").replace(/\s+/g, '').replace(/[^0-9]/g, '').substring(0, 10),
-        etablissement: m.etablissement || "ENCG",
+        etablissement: m.etablissement || "ENCG Oujda",
         niveauEtude: m.niveauEtude || "Bac+3",
         role: m.role || (index === 0 ? "CHEF" : "MEMBRE")
       }))
     };
+
+    console.log("📤 [PAYLOAD ENVOYÉ À SPRING BOOT] :", JSON.stringify(springBootPayload, null, 2));
 
     const response = await fetch(`${API_BASE_URL}/inscriptions`, {
       method: 'POST',
@@ -49,7 +58,8 @@ export const apiService = {
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(errorText || "Erreur lors de l'envoi");
+      console.error("🔥 REJET DU BACKEND (400) :", errorText);
+      throw new Error(errorText || "Erreur de validation lors de l'inscription");
     }
     return response.json();
   },
