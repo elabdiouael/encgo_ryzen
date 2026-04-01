@@ -1,6 +1,5 @@
 package com.ryzenencg.ryzenencg.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -9,7 +8,7 @@ import java.util.List;
 @Data
 public class InscriptionRequest {
 
-    @JsonProperty("nom")
+    // 🔥 L-FIX: 7iydna @JsonProperty("nom") bach y-machi m3a l-Frontend
     @NotBlank(message = "Le nom de l'équipe est requis")
     @Size(min = 3, max = 50, message = "Le nom doit contenir entre 3 et 50 caractères")
     private String nomEquipe;
@@ -20,11 +19,10 @@ public class InscriptionRequest {
     @NotBlank(message = "La ville est requise")
     private String ville;
 
-    // 🔥 NOUVEAUX CHAMPS D'ÉVALUATION
     @NotBlank(message = "Veuillez préciser votre expérience en hackathon")
     private String experienceHackathon;
 
-    private String detailsExperience; // Optionnel
+    private String detailsExperience;
 
     @NotEmpty(message = "Veuillez sélectionner au moins une compétence")
     private List<String> competencesEquipe;
@@ -46,7 +44,6 @@ public class InscriptionRequest {
     private String faisabilite;
     private String ambitionApres;
 
-    // 🔥 FIX: 3 à 4 membres
     @NotNull(message = "La liste des membres est requise")
     @Size(min = 3, max = 4, message = "L'équipe doit être composée de 3 ou 4 membres")
     @Valid

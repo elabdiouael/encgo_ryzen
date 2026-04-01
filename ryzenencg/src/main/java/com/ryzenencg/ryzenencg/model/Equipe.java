@@ -29,9 +29,9 @@ public class Equipe {
     @Column(columnDefinition = "TEXT")
     private String detailsExperience;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "equipe_competences", joinColumns = @JoinColumn(name = "equipe_id"))
-    @Column(name = "competence")
+    // 🔥 THE AIVEN FIX: N-sauvegardiw l-list b7al texte 3adi bach ma-n-creyiwch table jdida
+    @Convert(converter = com.ryzenencg.ryzenencg.utils.StringListConverter.class)
+    @Column(name = "competences", columnDefinition = "TEXT")
     private List<String> competencesEquipe = new ArrayList<>();
 
     // 💡 Motivations & Thème
