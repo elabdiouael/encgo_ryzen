@@ -1,12 +1,15 @@
 package com.ryzenencg.ryzenencg.service.impl;
 
+import com.ryzenencg.ryzenencg.dto.request.InscriptionIndividuelleRequest;
 import com.ryzenencg.ryzenencg.dto.request.InscriptionRequest;
 import com.ryzenencg.ryzenencg.dto.request.ParticipantDto;
 import com.ryzenencg.ryzenencg.dto.response.EquipeResponse;
 import com.ryzenencg.ryzenencg.dto.response.InscriptionResponse;
 import com.ryzenencg.ryzenencg.model.Equipe;
+import com.ryzenencg.ryzenencg.model.InscriptionIndividuelle;
 import com.ryzenencg.ryzenencg.model.Participant;
 import com.ryzenencg.ryzenencg.repository.EquipeRepository;
+import com.ryzenencg.ryzenencg.repository.InscriptionIndividuelleRepository;
 import com.ryzenencg.ryzenencg.service.IInscriptionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,9 @@ import java.util.stream.Collectors;
 public class InscriptionServiceImpl implements IInscriptionService {
 
     private final EquipeRepository equipeRepository;
+
+    // 🔥 Injection dyal l-Repository d l-individus
+    private final InscriptionIndividuelleRepository individuelleRepository;
 
     @Override
     @Transactional
@@ -53,7 +59,7 @@ public class InscriptionServiceImpl implements IInscriptionService {
                     .email(dto.getEmail())
                     .telephone(dto.getTelephone())
                     .etablissement(dto.getEtablissement())
-                    .niveauEtude(dto.getNiveauEtude()) // 🔥 Jdid
+                    .niveauEtude(dto.getNiveauEtude())
                     .role(dto.getRole() != null ? dto.getRole() : "MEMBRE")
                     .build();
             equipe.addParticipant(p);
@@ -107,5 +113,26 @@ public class InscriptionServiceImpl implements IInscriptionService {
                     .build();
 
         }).collect(Collectors.toList());
+    }
+
+    // 🔥 L-Implementation jdida d l-inscription individuelle
+    @Override
+    @Transactional
+    public String inscrireIndividu(InscriptionIndividuelleRequest request) {
+        InscriptionIndividuelle inscription = InscriptionIndividuelle.builder()
+                .nom(request.getNom())
+                .prenom(request.getPrenom())
+                .pourquoiParticipe(request.getPourquoiParticipe())
+                .ecole(request.getEcole())
+                .statut(request.getStatut())
+                .build();
+
+        individuelleRepository.save(inscription);
+        return "Inscription individuelle réussie !";
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public List<com.ryzenencg.ryzenencg.model.InscriptionIndividuelle> getAllIndividus() {
+        return individuelleRepository.findAll();
     }
 }

@@ -10,14 +10,23 @@ export interface ContactMessageDto {
   message: string;
 }
 
+// 🔥 JDID: Interface dyal l-Inscriptions Individuelles (Solos)
+export interface IndividuDto {
+  id: number;
+  nom: string;
+  prenom: string;
+  ecole: string;
+  statut: string;
+  pourquoiParticipe: string;
+  dateInscription: string;
+}
+
 export const apiService = {
   
   inscrireEquipe: async (data: any) => {
     console.log("📥 [DATA BRUTE DU FORMULAIRE] :", data);
 
-    // 💥 THE TRANSLATOR PROTOCOL: N-forciw s-smiyat li k-y-bghi Spring Boot
     const springBootPayload = {
-      // 👈 L-Fix: K-y-9elleb 3la nomEquipe, awla nom, awla k-y-3ti valeur par défaut
       nomEquipe: data.nomEquipe || data.nom || "Équipe SANS NOM",
       region: data.region || "Oriental",
       ville: data.ville || "Oujda",
@@ -36,9 +45,7 @@ export const apiService = {
       faisabilite: data.faisabilite || "Faisable",
       ambitionApres: data.ambitionApres || "Création de startup",
       
-      // 🚨 THE SNIPER FIX DYAL LES MEMBRES
       membres: (data.membres || []).map((m: any, index: number) => ({
-        // 👈 L-Fix: Mnin React y-sifet 'nom' awla 'name', n-reddouh 'nomComplet' b-zzez
         nomComplet: m.nomComplet || m.nom || m.name || `Membre ${index + 1}`,
         email: m.email || `user${index}@hackathon.com`,
         telephone: (m.telephone || "0600000000").replace(/\s+/g, '').replace(/[^0-9]/g, '').substring(0, 10),
@@ -62,6 +69,35 @@ export const apiService = {
       throw new Error(errorText || "Erreur de validation lors de l'inscription");
     }
     return response.json();
+  },
+
+  inscrireIndividu: async (data: any) => {
+    console.log("📥 [DATA INDIVIDUEL BRUTE] :", data);
+    
+    const response = await fetch(`${API_BASE_URL}/inscriptions/individuel`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("🔥 REJET DU BACKEND (400) :", errorText);
+      throw new Error(errorText || "Erreur lors de l'inscription individuelle");
+    }
+    
+    return response.text(); 
+  },
+
+  // 🔥 JDID: Methode bach l-Admin y-jbed les Inscriptions Individuelles
+  getIndividus: async (): Promise<IndividuDto[]> => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/inscriptions/individuels`, { cache: 'no-store' });
+      if (!response.ok) throw new Error('Erreur de récupération');
+      return await response.json();
+    } catch (e) { 
+      return []; 
+    }
   },
 
   sendContactMessage: async (data: ContactMessageDto) => {
@@ -90,7 +126,6 @@ export const apiService = {
       if (!response.ok) throw new Error('Erreur stats');
       return await response.json();
     } catch (error) {
-      // 🔥 THE SHIELD FIX: Rjja3 ga3 l-khayrat bach Vercel build ma-y-t-plantash
       return {
         totalEquipes: 0,
         totalParticipants: 0,

@@ -15,6 +15,7 @@ export default function Sidebar() {
     { name: 'Sponsors', path: '/admin/sponsors', icon: <Handshake size={20} /> },
     { name: 'Messages', path: '/admin/messages', icon: <Mail size={20} /> },
     { name: 'Archives CMS', path: '/admin/archives', icon: <Database size={20} /> },
+    { name: 'registration', path: '/admin/soloregister', icon: <Database size={20} /> },
   ];
 
   return (

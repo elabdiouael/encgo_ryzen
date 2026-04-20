@@ -1,0 +1,119 @@
+.adminContainer {
+  padding: 2rem;
+  background-color: #03070b;
+  min-height: 100vh;
+  font-family: monospace;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+  padding-bottom: 1rem;
+}
+
+.title {
+  color: #fff;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.title span {
+  color: #0ff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+}
+
+.refreshBtn {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #0ff;
+  color: #0ff;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.refreshBtn:hover {
+  background: #0ff;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.tableWrapper {
+  background: rgba(5, 10, 15, 0.8);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow-x: auto;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.cyberTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.cyberTable th {
+  background: rgba(0, 255, 255, 0.1);
+  color: #0ff;
+  padding: 1.2rem 1rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #0ff;
+}
+
+.cyberTable td {
+  padding: 1rem;
+  color: #c8d0e0;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.05);
+  transition: all 0.2s ease;
+}
+
+.cyberTable tr:hover td {
+  background: rgba(0, 255, 255, 0.05);
+  color: #fff;
+}
+
+.cyberTable tr:last-child td {
+  border-bottom: none;
+}
+
+.statutBadge {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #0ff;
+  color: #0ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.dateText {
+  color: #668899;
+  font-size: 0.85rem;
+}
+
+.motivationCell {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #88c0d0;
+  font-style: italic;
+}
+
+/* L-Animation dyal chargement */
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.loadingIcon { animation: spin 1s linear infinite; }
