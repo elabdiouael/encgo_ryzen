@@ -20,6 +20,7 @@ export default function Navbar() {
     { name: 'SPONSORS', path: '/sponsors', icon: <Handshake size={18} /> },
     { name: 'COMITÉ', path: '/organisateurs', icon: <Users size={18} /> },
     { name: 'CONTACT', path: '/contact', icon: <Mail size={18} /> },
+    { name: 'InscriptionInd', path: '/inscription-individuel', icon: <Mail size={18} /> },
   ];
 
   return (
